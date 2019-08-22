@@ -15,5 +15,6 @@
 
     <color name="stay_login_color">#67757C</color>
     <color name="dailog_text">#455a64</color>
-
+    <color name="light_black">#979494</color>
+    <color name="light_grey_color">#606060</color>
 </resources>

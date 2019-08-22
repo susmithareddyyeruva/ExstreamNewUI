@@ -138,8 +138,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View textView) {
-                // startActivity(new Intent(MyActivity.this, NextActivity.class));
-                // Toast.makeText(CreateAccountActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

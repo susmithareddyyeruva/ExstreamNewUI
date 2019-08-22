@@ -10,6 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:layout_marginRight="@dimen/dimen10"
+        android:layout_marginBottom="@dimen/dimen10"
         android:orientation="horizontal">
 
         <ScrollView
@@ -31,44 +34,31 @@
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="@dimen/dimen15"
+                        android:layout_marginBottom="@dimen/dimen10"
                         android:src="@drawable/exsteam_logo" />
-
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/dimen5"
                         android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:padding="@dimen/dimen10"
                         android:text="@string/only_create"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/use_exstream_TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/dimen5"
                         android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:padding="@dimen/dimen10"
                         android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:id="@+id/use_exstream_TextView"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/activity_horizontal_margin"
-                        android:text="@string/working_for_a_company"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -77,14 +67,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/dimen5"
                         android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/activity_horizontal_margin"
+                        android:padding="@dimen/dimen10"
+                        android:text="@string/working_for_a_company"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/contact_us_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dimen5"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:padding="@dimen/dimen10"
                         android:text=""
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:id="@+id/contact_us_TextView"/>
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
@@ -98,7 +100,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dimen10"
                         android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/dimen10"
+                        android:padding="@dimen/dimen5"
                         android:text="@string/existing_user"
                         android:textColor="@color/login_button"
                         android:textSize="16sp"
@@ -111,24 +113,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dimen10"
                         android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/dimen10"
+                        android:padding="@dimen/dimen5"
                         android:text="@string/password_reset_create"
                         android:textColor="@color/login_button"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/dimen10"
-                        android:fontFamily="@font/oswald_extralight"
-                        android:padding="@dimen/dimen10"
-                        android:text="@string/password_reset_create"
-                        android:textColor="@color/login_button"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:visibility="invisible" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,7 +140,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/dimen10"
+                            android:paddingRight="@dimen/dimen10">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -228,7 +220,6 @@
                                 android:id="@+id/phonenoEdt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:backgroundTint="@color/light_grey"
                                 android:fontFamily="@font/oswald_extralight"
                                 android:hint="@string/phone_no"
@@ -240,10 +231,13 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen5"
                                 android:layout_marginTop="@dimen/dimen10"
                                 android:fontFamily="@font/oswald_extralight"
                                 android:text="@string/your_exstream"
-                                android:textSize="@dimen/dimen16sp" />
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimen16sp"
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -274,7 +268,8 @@
                                     android:maxLines="1"
                                     android:singleLine="true"
                                     android:text=""
-                                    android:textSize="@dimen/dimen16sp" />
+                                    android:textSize="@dimen/dimen16sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
@@ -282,13 +277,16 @@
                                 android:id="@+id/passwordText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dimen5"
                                 android:backgroundTint="@color/light_grey"
                                 android:fontFamily="@font/oswald_extralight"
                                 android:hint="@string/password_requriments"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text=""
-                                android:textSize="@dimen/dimen16sp" />
+                                android:textColor="@color/light_black"
+                                android:textSize="@dimen/dimen16sp"
+                                android:textStyle="bold" />
 
                             <RadioGroup
                                 android:id="@+id/radioGroup"
@@ -302,27 +300,33 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".7"
+                                    android:fontFamily="@font/oswald_extralight"
                                     android:text="@string/characters"
+                                    android:textColor="@color/light_black"
                                     android:textSize="@dimen/dimen16sp"
-                                    android:fontFamily="@font/oswald_extralight"/>
+                                    android:textStyle="bold" />
 
                                 <RadioButton
                                     android:id="@+id/captial_lowerRB"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="@dimen/dimen16sp"
+                                    android:fontFamily="@font/oswald_extralight"
                                     android:text="@string/captial_lower"
-                                    android:fontFamily="@font/oswald_extralight"/>
+                                    android:textColor="@color/light_black"
+                                    android:textSize="@dimen/dimen16sp"
+                                    android:textStyle="bold" />
 
                                 <RadioButton
                                     android:id="@+id/alphanumericRB"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".7"
+                                    android:fontFamily="@font/oswald_extralight"
                                     android:text="@string/alphanumeric"
+                                    android:textColor="@color/light_black"
                                     android:textSize="@dimen/dimen16sp"
-                                    android:fontFamily="@font/oswald_extralight"/>
+                                    android:textStyle="bold" />
 
                             </RadioGroup>
 
@@ -362,9 +366,11 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/oswald_extralight"
                                     android:text=""
+                                    android:textColor="@color/light_black"
                                     android:textSize="@dimen/dimen16sp"
-                                    android:fontFamily="@font/oswald_extralight"/>
+                                    android:textStyle="bold" />
 
                                 <Button
                                     android:id="@+id/create_account_btn"
