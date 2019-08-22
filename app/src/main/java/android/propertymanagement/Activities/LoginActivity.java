@@ -442,4 +442,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mRequest.setEmail(emailEdt_dialog.getText().toString());
         return new Gson().toJsonTree(mRequest).getAsJsonObject();
     }
+
+
+    // Test
 }
