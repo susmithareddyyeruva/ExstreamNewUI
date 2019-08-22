@@ -29,12 +29,12 @@
     <string name="lastname">LAST NAME</string>
     <string name="company">COMPANY</string>
     <string name="phone_no">PHONE NUMBER</string>
-    <string name="enter_cutomer_url">ENTER CUSTOMER URL</string>
+    <string name="enter_cutomer_url">ENTER CUSTOM URL</string>
     <string name="exstream_tech">.exstream.tech</string>
     <string name="password_requriments">Password requrirements:</string>
     <string name="confirm_pass">CONFIRM PASSWORD</string>
     <string name="term_create_account">I have read and agree to  ExSTREAM Terms of Use</string>
-    <string name="only_create">Only craete a new account if you\'re setting up ExSTREAM for a new company or group of properties.</string>
+    <string name="only_create">Only create a new account if you\'re setting up ExSTREAM for a new company or group of properties.</string>
     <string name="use_exstream">If you already use ExSTREAM at a property, you can add a new property in your existing account. Login to your account.</string>
     <string name="working_for_a_company">If you are working for a company that already uses ExSTREAM. contact that company\'s system administrator to be added as a user.</string>
     <string name="not_sure">Not sure if there\'s an ExSTREAM account for your property already? Contact Us.</string>
@@ -44,7 +44,7 @@
     <string name="characters"> 8 Characters</string>
     <string name="captial_lower">Capital and lower-case</string>
     <string name="alphanumeric">Alphanumeric</string>
-    <string name="read_agree">I have read and agree to EXSTREAM Terms of Use</string>
+    <string name="read_agree">I have read and agree to ExSTREAM Terms of Use</string>
     <string name="err_please_enter_first_name">Please Enter First Name</string>
     <string name="err_please_enter_last_name">Please Enter Last Name</string>
     <string name="err_please_enter_company_name">Please Enter Company Name</string>
@@ -52,6 +52,6 @@
     <string name="err_please_enter_customer_url">Please Enter Customer Url</string>
     <string name="err_please_enter_confirm_pass">Please Enter Confirm Password</string>
     <string name="password_must_contain_onecharacter">Password should contain one upperCase,
-        one lowercase, one special character, one numeric and minimum Of 8 characters</string>
+        one lowercase, one numeric and minimum Of 8 characters</string>
     <string name="err_password_do_not_match">Password do not match</string>
 </resources>

@@ -10,6 +10,7 @@ import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
 import android.propertymanagement.Utils.CommonUtil;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,11 +22,13 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -48,7 +51,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
     private Context context;
     private EditText firstnameEdt, lastnameEdt, companyEdt, emailEdt, phonenoEdt, enterUrlEdt,
             passwordEdt, confirm_passEdt, emailEdt_dialog;
-    private RadioGroup radioGroup;
+    private LinearLayout radioGroup;
     private RadioButton charactersRB, captial_lowerRB, alphanumericRB, agreeRB;
     private Button create_account_btn, cancelBtn, submitBtn;
     private TextView about_tv, terms_of_use_tv,
@@ -97,6 +100,18 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         terms_of_use_tv = findViewById(R.id.terms_of_use_tv);
         privacy_policy_tv = findViewById(R.id.privacy_policy_tv);
         contact_us_TextView = findViewById(R.id.contact_us_TextView);
+        charactersRB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        captial_lowerRB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        alphanumericRB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        privacy_policy_tv.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        firstnameEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        lastnameEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        companyEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        emailEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        phonenoEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        enterUrlEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        passwordEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        confirm_passEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
     }
 
     /* Navigation's and using the views */
@@ -206,7 +221,45 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                final String passwordStr = passwordEdt.getText().toString().trim();
+
+
+                if(charSequence.length()>=8){
+                    charactersRB.setChecked(true);
+                }
+
+
+                if(isalphanumericPattern(passwordStr)) {
+                    alphanumericRB.setChecked(true);
+                }
+
+
+                if(isuppercasePattern(passwordStr)){
+                    captial_lowerRB.setChecked(true);
+                }
+
+                if(islowercasePattern(passwordStr)){
+                    captial_lowerRB.setChecked(true);
+                }
+
+
+                passwordEdt.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        if (keyCode == KeyEvent.KEYCODE_DEL) {
+                            if (passwordStr.equals("")) {
+                                charactersRB.setChecked(false);
+                                alphanumericRB.setChecked(false);
+                                captial_lowerRB.setChecked(false);
+                            }
+
+
+                        }
+                        return false;
+                    }
+                });
+
 
             }
 
@@ -215,6 +268,8 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
 
             }
         });
+
+
         confirm_passEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -246,6 +301,44 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
                 }
             }
         });
+    }
+
+    public static boolean isalphanumericPattern(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String ALPHANUMERIC_PATTERN = "^[a-zA-Z0-9]*$";
+        pattern = Pattern.compile(ALPHANUMERIC_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+
+    }
+    public static boolean isuppercasePattern(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String UPPERCASE_PATTERN = "^[A-Z]*$";
+        pattern = Pattern.compile(UPPERCASE_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+
+    }
+    public static boolean isupperlowerePattern(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String UPPERCASE_PATTERN = "^[a-z0-9]*$";
+        pattern = Pattern.compile(UPPERCASE_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+
+    }
+
+    public static boolean islowercasePattern(final String password) {
+        Pattern pattern;
+        Matcher matcher;
+        final String LOWERCASE_PATTERN = "^[a-z]*$";
+        pattern = Pattern.compile(LOWERCASE_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+
     }
 
     @Override
@@ -443,7 +536,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
     public static boolean isValidPassword(final String password) {
         Pattern pattern;
         Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,20}$";
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
         return matcher.matches();

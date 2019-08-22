@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimen10"
         android:layout_marginRight="@dimen/dimen10"
-        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginBottom="@dimen/dimen50"
         android:orientation="horizontal">
 
         <ScrollView
@@ -20,6 +20,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/main_lyt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -36,7 +37,7 @@
                         android:layout_height="120dp"
                         android:layout_marginTop="@dimen/dimen15"
                         android:layout_marginBottom="@dimen/dimen10"
-                        android:src="@drawable/exsteam_logo" />
+                        android:src="@drawable/logo_exstream" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,7 +125,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="@dimen/dimen15"
                     android:layout_weight="1">
 
                     <android.support.v7.widget.CardView
@@ -133,8 +134,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/dimen10"
                         android:background="@drawable/login_form_border"
-                        android:elevation="5dp"
-                        android:padding="@dimen/activity_horizontal_margin">
+                        android:elevation="@dimen/dimen5">
 
 
                         <LinearLayout
@@ -142,7 +142,9 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:paddingLeft="@dimen/dimen10"
-                            android:paddingRight="@dimen/dimen10">
+                            android:paddingRight="@dimen/dimen10"
+                            android:paddingBottom="@dimen/dimen10"
+                            >
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -153,7 +155,8 @@
                                 android:fontFamily="@font/oswald_extralight"
                                 android:text="@string/create_a_new_account"
                                 android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -288,7 +291,7 @@
                                 android:textSize="@dimen/dimen16sp"
                                 android:textStyle="bold" />
 
-                            <RadioGroup
+                            <LinearLayout
                                 android:id="@+id/radioGroup"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -302,6 +305,7 @@
                                     android:layout_weight=".7"
                                     android:fontFamily="@font/oswald_extralight"
                                     android:text="@string/characters"
+                                    android:buttonTint="@color/login_button"
                                     android:textColor="@color/light_black"
                                     android:textSize="@dimen/dimen16sp"
                                     android:textStyle="bold" />
@@ -311,6 +315,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:buttonTint="@color/login_button"
                                     android:fontFamily="@font/oswald_extralight"
                                     android:text="@string/captial_lower"
                                     android:textColor="@color/light_black"
@@ -322,13 +327,14 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".7"
+                                    android:buttonTint="@color/login_button"
                                     android:fontFamily="@font/oswald_extralight"
                                     android:text="@string/alphanumeric"
                                     android:textColor="@color/light_black"
                                     android:textSize="@dimen/dimen16sp"
                                     android:textStyle="bold" />
 
-                            </RadioGroup>
+                            </LinearLayout>
 
                             <android.propertymanagement.Utils.CommonEditText
                                 android:id="@+id/passwordEdt"
@@ -338,6 +344,7 @@
                                 android:backgroundTint="@color/light_grey"
                                 android:fontFamily="@font/oswald_extralight"
                                 android:hint="@string/password"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                                 android:inputType="textPassword"
                                 android:maxLines="1"
                                 android:singleLine="true"
@@ -368,6 +375,7 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/oswald_extralight"
                                     android:text=""
+                                    android:buttonTint="@color/login_button"
                                     android:textColor="@color/light_black"
                                     android:textSize="@dimen/dimen16sp"
                                     android:textStyle="bold" />
@@ -388,23 +396,15 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:visibility="invisible">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-
-                            </LinearLayout>
-
                         </LinearLayout>
 
                     </android.support.v7.widget.CardView>
+
                 </LinearLayout>
+
             </LinearLayout>
+
+
         </ScrollView>
     </LinearLayout>
 
@@ -413,8 +413,10 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
+        android:layout_below="@+id/main_lyt"
         android:background="@color/colorPrimary"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        tools:ignore="NotSibling">
 
         <TextView
             android:id="@+id/copy_right_info_tv"
