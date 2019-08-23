@@ -282,7 +282,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable e) {
 
             }
         });
