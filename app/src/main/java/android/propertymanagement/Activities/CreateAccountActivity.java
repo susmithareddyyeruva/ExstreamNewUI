@@ -100,10 +100,10 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         terms_of_use_tv = findViewById(R.id.terms_of_use_tv);
         privacy_policy_tv = findViewById(R.id.privacy_policy_tv);
         contact_us_TextView = findViewById(R.id.contact_us_TextView);
-        charactersRB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
-        captial_lowerRB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
-        alphanumericRB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
-        privacy_policy_tv.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        charactersRB.setTypeface(ResourcesCompat.getFont(context, R.font.helveticaneue));
+        captial_lowerRB.setTypeface(ResourcesCompat.getFont(context, R.font.helveticaneue));
+        alphanumericRB.setTypeface(ResourcesCompat.getFont(context, R.font.helveticaneue));
+        privacy_policy_tv.setTypeface(ResourcesCompat.getFont(context, R.font.helveticaneue));
         firstnameEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
         lastnameEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
         companyEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
@@ -397,6 +397,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         emailEdt_dialog = dialogView.findViewById(R.id.emailEdt_dialog);
         cancelBtn = dialogView.findViewById(R.id.cancelBtn);
         submitBtn = dialogView.findViewById(R.id.submitBtn);
+        emailEdt_dialog.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
         alertDialog = dialogBuilder.create();
         /**
          * @param OnClickListner

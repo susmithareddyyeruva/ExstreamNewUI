@@ -48,7 +48,7 @@
                 android:fontFamily="@font/oswald_extralight"
                 android:text="@string/existing_user_login"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen24"
                 android:textStyle="bold"/>
 
 
@@ -56,10 +56,12 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/light_grey"
+                android:backgroundTint="@color/black"
                 android:fontFamily="@font/oswald_extralight"
                 android:gravity="center|left"
                 android:hint="@string/email"
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:paddingLeft="5dp"
@@ -71,11 +73,12 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/light_grey"
+                android:backgroundTint="@color/black"
                 android:drawablePadding="5dp"
                 android:fontFamily="@font/oswald_extralight"
                 android:gravity="center|left"
                 android:hint="@string/password"
+                android:textColorHint="@color/light_grey_color"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingLeft="5dp"
@@ -94,9 +97,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen5"
-                    android:fontFamily="@font/oswald_extralight"
+                    android:fontFamily="@font/helveticaneue"
                     android:text="@string/stay_logged_in"
-                    android:textColor="@color/light_grey" />
+                    android:textSize="@dimen/dimen16sp"
+                    android:textColor="@color/light_grey_color" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -110,8 +114,9 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/btn_background_save"
-                        android:fontFamily="@font/oswald_extralight"
+                        android:fontFamily="@font/helveticaneue"
                         android:text="@string/login"
+                        android:textSize="@dimen/dimen16sp"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -127,11 +132,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:fontFamily="@font/oswald_extralight"
+        android:fontFamily="@font/helveticaneue"
         android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/password_reset"
         android:textColor="@color/login_button"
-        android:textSize="18sp"
+        android:textSize="@dimen/dimen16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -141,10 +146,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen5"
         android:layout_marginBottom="@dimen/dimen5"
-        android:fontFamily="@font/oswald_extralight"
+        android:fontFamily="@font/helveticaneue"
         android:text="@string/create_a_new_account"
         android:textColor="@color/login_button"
-        android:textSize="18sp"
+        android:textSize="@dimen/dimen16sp"
         android:textStyle="bold" />
 
 
@@ -170,7 +175,7 @@
                 android:padding="@dimen/dimen10"
                 android:text="@string/copyright_information"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -187,7 +192,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:text="@string/about_exstream"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen16sp"
                 android:textStyle="bold" />
 
 
@@ -197,7 +202,6 @@
                 android:layout_height="35dp"
                 android:layout_toLeftOf="@id/terms_of_use_tv"
                 android:background="@drawable/ic_colon_img"
-                android:fontFamily="@font/oswald_extralight"
                 android:foregroundGravity="center"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="5dp"/>
@@ -216,7 +220,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:text="@string/terms_of_use"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen16sp"
                 android:textStyle="bold" />
 
 
@@ -243,7 +247,7 @@
                 android:paddingBottom="@dimen/dimen10"
                 android:text="@string/privacy_policy"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/dimen16sp"
                 android:textStyle="bold" />
 
 

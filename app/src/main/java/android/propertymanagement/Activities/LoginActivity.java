@@ -2,6 +2,7 @@ package android.propertymanagement.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.propertymanagement.ModelClass.RequestModelClasses.LoginPageAPIRequestModel;
 import android.propertymanagement.ModelClass.RequestModelClasses.PasswordResetRequestModel;
 import android.propertymanagement.R;
@@ -13,7 +14,9 @@ import android.propertymanagement.Utils.SharedPrefsData;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,9 +104,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         about_tv.setOnClickListener(this);
         terms_of_use_tv.setOnClickListener(this);
         privacy_policy_tv.setOnClickListener(this);
-        stayinloggedCB.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+        stayinloggedCB.setTypeface(ResourcesCompat.getFont(context, R.font.helveticaneue));
         emailEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
         passwordEdt.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
+
     }
 
     @Override
@@ -257,6 +261,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         emailEdt_dialog =  dialogView.findViewById(R.id.emailEdt_dialog);
         cancelBtn =  dialogView.findViewById(R.id.cancelBtn);
         submitBtn =  dialogView.findViewById(R.id.submitBtn);
+        emailEdt_dialog.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
         alertDialog = dialogBuilder.create();
         /**
          * @param OnClickListner
@@ -346,16 +351,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             SharedPrefsData.putString(context, Constants.tokenIssued, tokenIssuedStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.tokenExpires, tokenExpiresStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.user, userStr, Constants.PREF_NAME);
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(getApplicationContext(), " " +
-                                            getString(R.string.login_success)
-                                    , Toast.LENGTH_SHORT).show();
-
-
-
+                            CommonUtil.customToast(" " +
+                                    getString(R.string.login_success), LoginActivity.this);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -367,10 +368,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onErrorResponse(VolleyError error) {
                 hideProgressDialog();
-                Toast.makeText(getApplicationContext(), " " +
-                        getString(R.string.login_error_message)
-                        , Toast.LENGTH_SHORT).show();
-
+                CommonUtil.customToast(" " +
+                        getString(R.string.login_error_message), LoginActivity.this);
 
             }
         }) {

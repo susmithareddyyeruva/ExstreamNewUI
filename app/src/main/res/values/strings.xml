@@ -15,13 +15,13 @@
     <string name="create_a_new_account">CREATE A NEW ACCOUNT</string>
     <string name="password_reset">PASSWORD RESET</string>
     <string name="password">PASSWORD</string>
-    <string name="err_please_enter_email">Please Enter Email</string>
+    <string name="err_please_enter_email">Please enter email</string>
     <string name="err_please_enter_password">Please enter password</string>
     <string name="login_error_message">The user name or password is incorrect</string>
     <string name="err_please_enter_valid_email">Please enter valid email</string>
     <string name="login_success">Login Successful</string>
     <string name="please_enter_email">Please Enter Email</string>
-    <string name="email_str">Enter Your Registered Email *</string>
+    <string name="email_str">Enter your registered email *</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
     <string name="develop_across">Develop across all platforms</string>
@@ -48,12 +48,12 @@
     <string name="captial_lower">Capital and lower-case</string>
     <string name="alphanumeric">Alphanumeric</string>
     <string name="read_agree">I have read and agree to ExSTREAM Terms of Use</string>
-    <string name="err_please_enter_first_name">Please Enter First Name</string>
-    <string name="err_please_enter_last_name">Please Enter Last Name</string>
-    <string name="err_please_enter_company_name">Please Enter Company Name</string>
-    <string name="err_please_enter_phone_number">Please Enter Phone Number</string>
-    <string name="err_please_enter_customer_url">Please Enter Customer Url</string>
-    <string name="err_please_enter_confirm_pass">Please Enter Confirm Password</string>
+    <string name="err_please_enter_first_name">Please enter first name</string>
+    <string name="err_please_enter_last_name">Please enter last name</string>
+    <string name="err_please_enter_company_name">Please enter company name</string>
+    <string name="err_please_enter_phone_number">Please enter phone number</string>
+    <string name="err_please_enter_customer_url">Please enter custom Url</string>
+    <string name="err_please_enter_confirm_pass">Please enter confirm password</string>
     <string name="password_must_contain_onecharacter">Password should contain one upperCase,
         one lowercase, one numeric and minimum Of 8 characters</string>
     <string name="err_password_do_not_match">Password do not match</string>
@@ -71,4 +71,6 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="reset_pwd">RESET PASSWORD</string>
+    <string name="create_account">CREATE ACCOUNT</string>
 </resources>

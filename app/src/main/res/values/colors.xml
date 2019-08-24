@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#AB0033</color>
+    <color name="colorPrimary">#ab0033</color>
     <!-- <color name="colorPrimaryDark">#F2AB0033</color>-->
-    <color name="colorPrimaryDark">#AB0033</color>
-    <color name="colorAccent">@color/colorPrimaryDark</color>
+    <color name="colorPrimaryDark">#ab0033</color>
+    <color name="colorAccent">#ab0033</color>
     <color name="black_overlay">#66000000</color>
     <color name="white">#ffffff</color>
     <color name="light_grey">#a4a4a4</color>
@@ -17,5 +17,6 @@
     <color name="dailog_text">#455a64</color>
     <color name="light_black">#979494</color>
     <color name="light_grey_color">#606060</color>
+    <color name="black">#000000</color>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_centerHorizontal="true"
     android:layout_centerInParent="true"
     android:layout_gravity="center"
-    android:background="@drawable/btn_background_save"
+    android:background="@drawable/toast_background"
     android:gravity="center">
 
 
