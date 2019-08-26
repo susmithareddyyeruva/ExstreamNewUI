@@ -12,6 +12,7 @@
     <color name="light_gray">#DFDFDF</color>
 
     <color name="login_button">#ba9825</color>
+    <color name="light_grey_colour">#37343B</color>
 
     <color name="stay_login_color">#67757C</color>
     <color name="dailog_text">#455a64</color>

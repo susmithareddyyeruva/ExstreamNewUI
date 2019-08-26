@@ -63,10 +63,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen10"
                 android:layout_weight="1"
-                android:id="@+id/sipnnerEdt"></Spinner>
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:id="@+id/spinnerEdt"/>
 
             <android.propertymanagement.Utils.CommonEditText
                 android:id="@+id/emailEdt"
+                
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

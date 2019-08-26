@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -16,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsersListAdapter extends RecyclerView.Adapter {
@@ -44,6 +47,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 userModels.get(position).getLastName());
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhone());
+
+
 
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
