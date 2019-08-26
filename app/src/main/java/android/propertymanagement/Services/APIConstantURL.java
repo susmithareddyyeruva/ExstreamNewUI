@@ -15,4 +15,11 @@ public interface APIConstantURL {
     // RegisterAccount
     String RegisterAccount = BASE_URL + "api/AnonymousAccess/RegisterAccount";
 
+    // GetAccountOwnerDetails
+    String GetAccountOwnerDetails = BASE_URL + "api/Account/GetAccountOwnerDetails";
+
+    //GetAllStates
+    String GetAllStates = BASE_URL + "api/State/GetAllStates";
+
+
 }

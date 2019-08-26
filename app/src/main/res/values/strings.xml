@@ -129,4 +129,5 @@
     <string name="stat">STAT</string>
     <string name="rent">RENT</string>
     <string name="perent">PERENT</string>
+    <string name="select_state">Select State</string>
 </resources>
