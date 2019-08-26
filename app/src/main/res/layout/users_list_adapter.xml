@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/firstnameText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/firstnameEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:hint="@string/firstname"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp"
+                android:visibility="gone" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/lastnameEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:hint="@string/lastname"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/spinnerEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_weight="1"
+                android:visibility="gone"></Spinner>
+
+
+            <TextView
+                android:id="@+id/spinnerText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/emailEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:hint="@string/email_user"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/phonenoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/phonenoEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:hint="@string/phone"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey_color"
+                android:textSize="@dimen/dimen16sp"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/addImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:src="@drawable/icon_add"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/okImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:src="@drawable/icon_ok"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/closeImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:src="@drawable/icon_deleteclosedot"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/editImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:src="@drawable/icon_edit" />
+
+            <ImageView
+                android:id="@+id/dotImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:src="@drawable/icon_kebab" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

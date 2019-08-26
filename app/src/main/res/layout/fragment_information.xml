@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dimen10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen20"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/propertyNameEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/property_name"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/portfolioNameEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/portfolio_name"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.propertymanagement.Utils.CommonEditText
+                            android:id="@+id/portfolioCodeEdt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/oswald_extralight"
+                            android:hint="@string/portfolio_code"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColorHint="@color/light_grey_color"
+                            android:textSize="@dimen/dimen16sp"
+
+                            />
+
+                        <android.propertymanagement.Utils.CommonEditText
+                            android:id="@+id/ownerShipEdt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/oswald_extralight"
+                            android:hint="@string/owner_ship"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColorHint="@color/light_grey_color"
+                            android:textSize="@dimen/dimen16sp" />
+
+                    </LinearLayout>
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/propertyMngCoEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/property_managemntco"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/street_addressEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/street_address"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/suite_unitEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/suite_unit_dot"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/zip_Edt"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/zip"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.propertymanagement.Utils.CommonEditText
+                            android:id="@+id/cityEdt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/oswald_extralight"
+                            android:hint="@string/city"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColorHint="@color/light_grey_color"
+                            android:textSize="@dimen/dimen16sp" />
+
+                        <Spinner
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen20"
+                            android:layout_weight="1">
+
+                        </Spinner>
+                    </LinearLayout>
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/phonenoEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/phone_no"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/faxNoEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/faxNo"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+                    <android.propertymanagement.Utils.CommonEditText
+                        android:id="@+id/taxIdEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/oswald_extralight"
+                        android:hint="@string/taxid"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColorHint="@color/light_grey_color"
+                        android:textSize="@dimen/dimen16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.propertymanagement.Utils.CommonEditText
+                            android:id="@+id/number_of_unitEdt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/oswald_extralight"
+                            android:hint="@string/number_of_units"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColorHint="@color/light_grey_color"
+                            android:textSize="@dimen/dimen16sp"
+
+                            />
+
+                        <android.propertymanagement.Utils.CommonEditText
+                            android:id="@+id/yearBuiltEdt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/oswald_extralight"
+                            android:hint="@string/year_built"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColorHint="@color/light_grey_color"
+                            android:textSize="@dimen/dimen16sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:layout_weight=".5"
+                    android:background="@drawable/empty_background"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/icon_upload" />
+
+                    <TextView
+                        android:id="@+id/companyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dimen10"
+                        android:text="@string/property_logo"
+                        android:textColor="@color/light_grey"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:layout_weight=".3"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:layout_marginBottom="@dimen/dimen10"
+                            android:src="@drawable/icon_ok" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/activity_footer" />
+</RelativeLayout>

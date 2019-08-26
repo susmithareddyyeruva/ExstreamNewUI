@@ -18,8 +18,33 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
-        app:menu="@menu/activity_home_drawer" />
+        app:itemTextColor="@color/white"
+        app:menu="@menu/activity_home_drawer">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@id/existImage"
+                android:background="@color/white" />
+
+            <ImageView
+                android:id="@+id/existImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen50"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/dimen10"
+                android:src="@drawable/logos_branding_exist" />
+
+        </RelativeLayout>
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

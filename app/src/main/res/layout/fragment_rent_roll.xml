@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/dimen50"
+        android:layout_height="@dimen/dimen50"
+        android:layout_below="@id/main_lyt"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dimen15"
+        android:src="@drawable/icon_upload" />
+
+    <LinearLayout
+        android:id="@+id/main_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_black"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/mod"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/type"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sqft"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bed"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/half_b"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bldg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/floor"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/strys"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/stat"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/perent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/unitEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/unit"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/modEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/mod"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/typeEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/type"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/sqftEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/sqft"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/bed"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/half_bEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/half_b"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/bldgEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/bldg"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/floorEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/floor"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/strysEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/strys"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/statEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/stat"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/rentEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/rent"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/perrentEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/perent"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+            <ImageView
+                android:id="@+id/addImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen15"
+                android:src="@drawable/icon_add" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/activity_footer" />
+</RelativeLayout>

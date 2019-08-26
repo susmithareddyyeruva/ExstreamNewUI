@@ -21,8 +21,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Activities.HomeActivity"
-            android:screenOrientation="landscape"
             android:label="@string/title_activity_home"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -33,6 +33,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.LoginActivity"
+            android:label=""
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.AccountInformationActivity"
+            android:label=""
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.NewPropertyActivity"
             android:label=""
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />

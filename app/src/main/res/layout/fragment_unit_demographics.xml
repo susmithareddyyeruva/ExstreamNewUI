@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_black"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/unit_type"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/unit_code"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sq_ft"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bed"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/bthrms"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/half_bth"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/levels"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/car_grg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/unit_typeEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/unit_type"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/unit_codeEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/unit_code"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/sq_ftEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/sq_ft"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/bedEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/bed"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/btnrmsEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/bthrms"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/half_bthEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/half_bth"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/levelsEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/levels"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+
+            <android.propertymanagement.Utils.CommonEditText
+                android:id="@+id/car_grgEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/car_grg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen16sp" />
+            <ImageView
+                android:id="@+id/addImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/main_lyt"
+                android:src="@drawable/icon_add" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:id="@+id/uploadImageView"
+        android:layout_width="@dimen/dimen50"
+        android:layout_height="@dimen/dimen50"
+        android:layout_below="@id/main_lyt"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dimen15"
+        android:src="@drawable/icon_upload" />
+
+    <include layout="@layout/activity_footer" />
+</RelativeLayout>
