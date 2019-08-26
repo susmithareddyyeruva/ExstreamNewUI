@@ -144,7 +144,7 @@
                 android:textColorHint="@color/light_grey_color"
                 android:textSize="@dimen/dimen16sp" />
             <TextView
-                android:id="@+id/zip_unitText"
+                android:id="@+id/zip_Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -175,12 +175,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/spinnerState">
+                    android:id="@+id/spinnerState"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_marginTop="@dimen/dimen15">
 
                 </Spinner>
 
                 <TextView
-                    android:id="@+id/city_unitText"
+                    android:id="@+id/cityText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"

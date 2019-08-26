@@ -91,9 +91,5 @@ public class AccountInformationActivity extends BaseActivity {
 
             return mFragmentTitleList.get(position);
         }
-
-
     }
-
-
 }

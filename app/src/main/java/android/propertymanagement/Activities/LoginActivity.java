@@ -53,13 +53,13 @@ import rx.schedulers.Schedulers;
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private Context context;
-    private EditText passwordEdt, emailEdt,emailEdt_dialog;
-    private Button login_button,cancelBtn,submitBtn;
+    private EditText passwordEdt, emailEdt, emailEdt_dialog;
+    private Button login_button, cancelBtn, submitBtn;
     private AlertDialog alertDialog, alert;
     private Subscription mSubscription;
     private CheckBox stayinloggedCB;
     private TextView about_tv, terms_of_use_tv, privacy_policy_tv,
-            password_reset_tv,create_account_tv;
+            password_reset_tv, create_account_tv;
     private int expires_in;
 
 
@@ -151,8 +151,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.about_tv:
 
                 /*
-                *  Custom dialog for aboutus
-                */
+                 *  Custom dialog for aboutus
+                 */
                 aboutUsDialog();
 
                 break;
@@ -160,8 +160,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.terms_of_use_tv:
 
                 /*
-                * Custom dialog for terms of use
-                */
+                 * Custom dialog for terms of use
+                 */
                 termsOfUseDialog();
 
                 break;
@@ -177,8 +177,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         }
     }
-
-
 
 
     private void aboutUsDialog() {
@@ -223,7 +221,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             emailEdt.requestFocus();
             emailEdt.setEnabled(true);
             return false;
-        }else if (!isValidEmail(emailEdt.getText().toString())) {
+        } else if (!isValidEmail(emailEdt.getText().toString())) {
             emailEdt.setError(getString(R.string.err_please_enter_valid_email));
             emailEdt.requestFocus();
             emailEdt.setEnabled(true);
@@ -250,6 +248,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
     }
+
     /**
      * custom forgotPasswordDialog for forgot password
      */
@@ -258,9 +257,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_forgot_password, null);
         dialogBuilder.setView(dialogView);
-        emailEdt_dialog =  dialogView.findViewById(R.id.emailEdt_dialog);
-        cancelBtn =  dialogView.findViewById(R.id.cancelBtn);
-        submitBtn =  dialogView.findViewById(R.id.submitBtn);
+        emailEdt_dialog = dialogView.findViewById(R.id.emailEdt_dialog);
+        cancelBtn = dialogView.findViewById(R.id.cancelBtn);
+        submitBtn = dialogView.findViewById(R.id.submitBtn);
         emailEdt_dialog.setTypeface(ResourcesCompat.getFont(context, R.font.oswald_extralight));
         alertDialog = dialogBuilder.create();
         /**
@@ -291,10 +290,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
 
 
-
         alertDialog.show();
     }
-
 
 
     private void LoiginAPIPOST() {
@@ -324,13 +321,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             Object useremail = jsonObject.getString("email");
                             Object token_type = jsonObject.getString("token_type");
                             Object access_token = jsonObject.getString("access_token");
-                           // Object expires_in = jsonObject.getInt("expires_in");
+                            // Object expires_in = jsonObject.getInt("expires_in");
                             Object tokenIssued = jsonObject.getString("tokenIssued");
                             Object tokenExpires = jsonObject.getString("tokenExpires");
                             Object user = jsonObject.getString("user");
 
                             String userNameStr = Username.toString();
                             String AccountIdStr = AccountId.toString();
+                            Integer AccountIdInt = Integer.parseInt(AccountId.toString());
                             String accountNameStr = accountName.toString();
                             String useremailStr = useremail.toString();
                             String token_typeStr = token_type.toString();
@@ -343,11 +341,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             SharedPrefsData.putInt(context, Constants.ISLOGIN, 1, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.USERNAME, userNameStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.ACCOUNTID, AccountIdStr, Constants.PREF_NAME);
+                            SharedPrefsData.putInt(context, Constants.ACCOUNTID, AccountIdInt, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.accountName, accountNameStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.useremail, useremailStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.token_type, token_typeStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.access_token, access_tokenStr, Constants.PREF_NAME);
-                           // SharedPrefsData.putInt(context, Constants.expires_in, expires_in, Constants.PREF_NAME);
+                            // SharedPrefsData.putInt(context, Constants.expires_in, expires_in, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.tokenIssued, tokenIssuedStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.tokenExpires, tokenExpiresStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.user, userStr, Constants.PREF_NAME);
@@ -420,8 +419,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         // to hide the Progress Dialog
                         hideProgressDialog();
                         CommonUtil.customToast(mResponse, LoginActivity.this);
-                        if(mResponse.equalsIgnoreCase
-                                ("Password reset link sent to your registered email")){
+                        if (mResponse.equalsIgnoreCase
+                                ("Password reset link sent to your registered email")) {
                             emailEdt_dialog.setText("");
                             alertDialog.dismiss();
                         }
@@ -441,7 +440,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mRequest.setEmail(emailEdt_dialog.getText().toString());
         return new Gson().toJsonTree(mRequest).getAsJsonObject();
     }
-
 
 
 }

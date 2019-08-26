@@ -1,6 +1,7 @@
 package android.propertymanagement.Adapter;
 
 import android.content.Context;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.UserModel;
 import android.propertymanagement.R;
 import android.support.annotation.NonNull;
@@ -24,9 +25,9 @@ import java.util.List;
 public class UsersListAdapter extends RecyclerView.Adapter {
 
     Context mContext;
-    List<UserModel> userModels;
+    ArrayList<GetAllAccountUsersAPIResponse> userModels;
 
-    public UsersListAdapter(Context mContext, List<UserModel> userModels) {
+    public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels) {
         this.mContext = mContext;
         this.userModels = userModels;
     }
@@ -46,11 +47,10 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
                 userModels.get(position).getLastName());
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
-        ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhone());
+        ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
 
 
-
-        ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
+        /*((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((TextViewHolder) holder).firstnameText.setVisibility(View.GONE);
@@ -122,7 +122,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 ((TextViewHolder) holder).okImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).closeImageView.setVisibility(View.GONE);
             }
-        });
+        });*/
 
         ((TextViewHolder) holder).dotImageView.setOnClickListener(new View.OnClickListener() {
             @Override

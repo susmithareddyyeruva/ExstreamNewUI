@@ -18,7 +18,8 @@
             android:layout_marginLeft="@dimen/dimen10"
             android:text="@string/companysetup"
             android:textSize="@dimen/dimen16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/oswald_extralight"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:text="@string/account_information"
             android:textSize="@dimen/dimen16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/oswald_extralight"/>
 
     </LinearLayout>
 

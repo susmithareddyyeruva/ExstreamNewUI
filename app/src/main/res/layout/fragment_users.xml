@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/dimen10">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewUsers"
@@ -61,14 +69,14 @@
             <Spinner
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:id="@+id/spinnerEdt"/>
 
             <android.propertymanagement.Utils.CommonEditText
                 android:id="@+id/emailEdt"
-                
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,5 +117,7 @@
         </LinearLayout>
 
     </LinearLayout>
+    </LinearLayout>
+</ScrollView>
 
 </RelativeLayout>

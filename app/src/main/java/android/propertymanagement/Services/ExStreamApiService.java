@@ -2,7 +2,9 @@ package android.propertymanagement.Services;
 
 
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAccountOwnerDetailsAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllStatesAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.LoginPostAPIResponse;
 
 import com.google.gson.JsonObject;
@@ -45,4 +47,24 @@ public interface ExStreamApiService {
      * */
     @GET
     Observable<ArrayList<GetAllStatesAPIResponse>> GetAllStates(@Url String url, @Header("Authorization") String Authorization);
+
+
+    /*
+     * GetUpdateAccountOwner
+     * */
+    @PUT(APIConstantURL.GetUpdateAccountOwner)
+    Observable<GetUpdateAccountOwnerAPIResponse> postUpdateAccountOwner(@Body JsonObject data, @Header("Authorization") String Authorization);
+
+
+    /*
+     * GetAllAccountUsers
+     * */
+    @GET
+    Observable<ArrayList<GetAllAccountUsersAPIResponse>> GetAllAccountUsers(@Url String url, @Header("Authorization") String Authorization);
+
+
+    // Login
+    @POST(APIConstantURL.GetCreateUser)
+    Observable<String> GetCreateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
+
 }
