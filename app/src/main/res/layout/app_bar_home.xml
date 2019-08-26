@@ -27,11 +27,21 @@
                 android:layout_gravity="start"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/logos_branding_home" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/companysetup"
+                android:fontFamily="@font/oswald_extralight"
+                android:textSize="@dimen/dimen16sp"
+                android:textColor="@color/black"/>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home" />
+
+    <include layout="@layout/activity_footer"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

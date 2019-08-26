@@ -225,21 +225,21 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
                 final String passwordStr = passwordEdt.getText().toString().trim();
 
 
-                if(charSequence.length()>=8){
+                if (charSequence.length() >= 8) {
                     charactersRB.setChecked(true);
                 }
 
 
-                if(isalphanumericPattern(passwordStr)) {
+                if (isalphanumericPattern(passwordStr)) {
                     alphanumericRB.setChecked(true);
                 }
 
 
-                if(isuppercasePattern(passwordStr)){
+                if (isuppercasePattern(passwordStr)) {
                     captial_lowerRB.setChecked(true);
                 }
 
-                if(islowercasePattern(passwordStr)){
+                if (islowercasePattern(passwordStr)) {
                     captial_lowerRB.setChecked(true);
                 }
 
@@ -312,6 +312,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         return matcher.matches();
 
     }
+
     public static boolean isuppercasePattern(final String password) {
         Pattern pattern;
         Matcher matcher;
@@ -321,6 +322,7 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         return matcher.matches();
 
     }
+
     public static boolean isupperlowerePattern(final String password) {
         Pattern pattern;
         Matcher matcher;
@@ -660,4 +662,13 @@ public class CreateAccountActivity extends BaseActivity implements View.OnClickL
         return new Gson().toJsonTree(mRequest).getAsJsonObject();
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+
+    }
 }

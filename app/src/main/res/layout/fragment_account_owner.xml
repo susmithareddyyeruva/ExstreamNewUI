@@ -177,7 +177,7 @@
                     android:layout_weight="1"
                     android:id="@+id/spinnerState"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:layout_marginTop="@dimen/dimen15">
+                    >
 
                 </Spinner>
 

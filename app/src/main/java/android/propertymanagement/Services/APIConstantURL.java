@@ -21,6 +21,10 @@ public interface APIConstantURL {
     //GetAllStates
     String GetAllStates = BASE_URL + "api/State/GetAllStates";
 
+    //GetPermissionGroups
+    String GetPermissionGroups = BASE_URL + "api/PermissionGroups/GetAll";
+
+
     // GetUpdateAccountOwner
     String GetUpdateAccountOwner = BASE_URL + "api/Account/UpdateAccountOwner";
 

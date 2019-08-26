@@ -22,7 +22,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
         app:itemTextColor="@color/white"
-        app:menu="@menu/activity_home_drawer">
+        app:menu="@menu/activity_home_drawer"
+        >
 
 
         <RelativeLayout

@@ -4,14 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.propertymanagement.Adapter.UsersListAdapter;
 import android.propertymanagement.ModelClass.RequestModelClasses.GetCreateUserAPIRequestModel;
-import android.propertymanagement.ModelClass.RequestModelClasses.GetUpdateAccountOwnerAPIRequestModel;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
-import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
 import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
 import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
-import android.propertymanagement.Utils.CommonUtil;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.v4.app.Fragment;
@@ -20,12 +19,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -51,6 +48,10 @@ public class UsersFragment extends Fragment {
     UsersListAdapter usersListAdapter;
     private String authorizationToken;
     private Subscription mSubscription;
+    ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
+    GetCreateUserAPIResponse getCreateUserAPIResponse;
+    ArrayAdapter<String> adapter_permission;
+    private int spinnerPermissionStr;
     private ArrayList<GetAllAccountUsersAPIResponse> listResults = new ArrayList<>();
     private ArrayList<GetAllAccountUsersAPIResponse> BIndDatalistResults = new ArrayList<>();
 
@@ -105,6 +106,8 @@ public class UsersFragment extends Fragment {
 
         getAllAccountUsers();
 
+        getSpinnerPermission();
+
     }
 
     private void setViews() {
@@ -120,13 +123,14 @@ public class UsersFragment extends Fragment {
 
     }
 
+
     private void getCreateUser() {
         JsonObject object = addCreateUserRequest();
         ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
         mSubscription = service.GetCreateUser(object, "bearer" + " " + authorizationToken)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
+                .subscribe(new Subscriber<GetCreateUserAPIResponse>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -147,14 +151,13 @@ public class UsersFragment extends Fragment {
                     }
 
                     @Override
-                    public void onNext(String mResponse) {
+                    public void onNext(GetCreateUserAPIResponse mResponse) {
 
-                       /* firstnameEdt.setText(mResponse.);
-                        firstStr = firstnameEdt.getText().toString();
-                        lastStr = lastnameEdt.getText().toString();
-                        emailStr = emailEdt.getText().toString();
-                        phoneStr = phonenoEdt.getText().toString();
-                        CommonUtil.customToast(mResponse.getMessage(), mContext);*/
+                        firstnameEdt.setText(mResponse.getFirstName().toString());
+                        lastnameEdt.setText(mResponse.getLastName().toString());
+                        emailEdt.setText(mResponse.getEmail().toString());
+                        phonenoEdt.setText(mResponse.getPhoneNumber().toString());
+                        spinnerPermissionStr = mResponse.getPermissionGroupId();
 
                         getAllAccountUsers();
 
@@ -163,25 +166,54 @@ public class UsersFragment extends Fragment {
                 });
     }
 
-    /**
-     * Json Object of addCreateUserRequest
-     *
-     * @return
-     */
-    private JsonObject addCreateUserRequest() {
-        GetCreateUserAPIRequestModel model = new GetCreateUserAPIRequestModel();
-        model.setFirstName(firstStr);
-        model.setLastName(lastStr);
-        model.setEmail(emailStr);
-        model.setPhoneNumber(phoneStr);
-        model.setPermissionGroups(null);
-        model.setPassword("Admin123");
-        model.setActive(true);
-        model.setAllProperties(true);
+    private void getSpinnerPermission() {
+        authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.GetPermissionGroups(APIConstantURL.GetPermissionGroups, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ArrayList<GetAllPermissionAPIResponse>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
 
-        return new Gson().toJsonTree(model).getAsJsonObject();
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ArrayList<GetAllPermissionAPIResponse> mResponse) {
+
+                        ArrayList statesList = new ArrayList();
+                        allPermissionAPIResponse = mResponse;
+                        statesList.add(getString(R.string.select_permission));
+                        for (int i = 0; i < allPermissionAPIResponse.size(); i++)
+                            statesList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
+                        adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, statesList);
+                        adapter_permission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerEdt.setAdapter(adapter_permission);
+                        if (getCreateUserAPIResponse != null && getCreateUserAPIResponse.getPermissionGroupId() != null &&
+                                !getCreateUserAPIResponse.getPermissionGroupId().equals(""))
+                            for (int j = 0; j < allPermissionAPIResponse.size(); j++)
+                                if (allPermissionAPIResponse.get(j).getPermissionGroupId().equals(spinnerPermissionStr))
+                                    spinnerEdt.setSelection(j + 1);
+
+                    }
+                });
 
     }
+
 
     private void getAllAccountUsers() {
         authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
@@ -218,6 +250,26 @@ public class UsersFragment extends Fragment {
 
                     }
                 });
+    }
+
+    /**
+     * Json Object of addCreateUserRequest
+     *
+     * @return
+     */
+    private JsonObject addCreateUserRequest() {
+        GetCreateUserAPIRequestModel model = new GetCreateUserAPIRequestModel();
+        model.setFirstName(firstnameEdt.getText().toString());
+        model.setLastName(lastnameEdt.getText().toString());
+        model.setEmail(emailEdt.getText().toString());
+        model.setPhoneNumber(phonenoEdt.getText().toString());
+        model.setPermissionGroupId(allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId());
+        model.setPassword("Admin123");
+        model.setActive(true);
+        model.setAllProperties(true);
+
+        return new Gson().toJsonTree(model).getAsJsonObject();
+
     }
 
 

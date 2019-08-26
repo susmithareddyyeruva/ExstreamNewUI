@@ -3,7 +3,9 @@ package android.propertymanagement.Services;
 
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAccountOwnerDetailsAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllStatesAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.LoginPostAPIResponse;
 
@@ -50,6 +52,13 @@ public interface ExStreamApiService {
 
 
     /*
+     * GetAllPermissionAPIResponse
+     * */
+    @GET
+    Observable<ArrayList<GetAllPermissionAPIResponse>> GetPermissionGroups(@Url String url, @Header("Authorization") String Authorization);
+
+
+    /*
      * GetUpdateAccountOwner
      * */
     @PUT(APIConstantURL.GetUpdateAccountOwner)
@@ -65,6 +74,6 @@ public interface ExStreamApiService {
 
     // Login
     @POST(APIConstantURL.GetCreateUser)
-    Observable<String> GetCreateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
+    Observable<GetCreateUserAPIResponse> GetCreateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
 
 }

@@ -56,11 +56,11 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/light_gray"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:gravity="center|left"
                 android:hint="@string/email"
-                android:textColorHint="@color/light_gray"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
@@ -73,12 +73,12 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/light_gray"
+                android:backgroundTint="@color/light_grey"
                 android:drawablePadding="5dp"
                 android:fontFamily="@font/oswald_extralight"
                 android:gravity="center|left"
                 android:hint="@string/password"
-                android:textColorHint="@color/light_gray"
+                android:textColorHint="@color/light_grey"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingLeft="5dp"
@@ -100,7 +100,7 @@
                     android:fontFamily="@font/helveticaneue"
                     android:text="@string/stay_logged_in"
                     android:textSize="@dimen/dimen16sp"
-                    android:textColor="@color/light_gray" />
+                    android:textColor="@color/light_grey" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"

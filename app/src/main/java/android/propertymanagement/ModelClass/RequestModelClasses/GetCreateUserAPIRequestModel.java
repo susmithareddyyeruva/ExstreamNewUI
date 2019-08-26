@@ -29,6 +29,10 @@ public class GetCreateUserAPIRequestModel {
     @Expose
     private String phoneNumber;
 
+    @SerializedName("permissionGroupId")
+    @Expose
+    private Integer permissionGroupId;
+
     @SerializedName("isActive")
     @Expose
     private Boolean isActive;
@@ -112,4 +116,13 @@ public class GetCreateUserAPIRequestModel {
     public void setAllProperties(Boolean allProperties) {
         isAllProperties = allProperties;
     }
+
+    public Integer getPermissionGroupId() {
+        return permissionGroupId;
+    }
+
+    public void setPermissionGroupId(Integer permissionGroupId) {
+        this.permissionGroupId = permissionGroupId;
+    }
+
 }

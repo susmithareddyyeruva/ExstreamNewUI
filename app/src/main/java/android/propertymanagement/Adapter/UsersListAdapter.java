@@ -46,6 +46,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
         ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
                 userModels.get(position).getLastName());
+        ((TextViewHolder)holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
 
