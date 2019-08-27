@@ -46,15 +46,15 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.TabLayout
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_black"
-            app:layout_anchor="@id/appBar"
-            app:layout_anchorGravity="bottom"
+            android:background="@color/light_grey"
+            android:visibility="visible"
+            app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/colorPrimary"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-            app:tabTextColor="@color/white" />
+            app:tabTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>
 
