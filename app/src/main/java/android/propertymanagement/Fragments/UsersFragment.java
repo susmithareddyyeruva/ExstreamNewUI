@@ -144,7 +144,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
                             spinnerPermissionStr = mResponse.getPermissionGroupId();
                         }
 */
-                        userId = mResponse.getUserId();
+
                         getAllAccountUsers();
 
                     }
@@ -235,6 +235,8 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
                         recyclerViewUsers.setAdapter(usersListAdapter);
                         usersListAdapter.setOnCartChangedListener(UsersFragment.this);
 
+                        userId = mResponse.get(0).getUserId();
+
                     }
                 });
     }
@@ -261,19 +263,21 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
 
     @Override
-    public void setCartClickListener(String status, int position) {
+    public void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr, String emailIdStr, String phonenoStr) {
 
-/*
-        if (status.equalsIgnoreCase("update")) {
+        firstStr = firstNameStr;
+        lastStr = lastNameStr;
+        emailStr = emailIdStr;
+        phoneStr = phonenoStr;
+        if (status.equalsIgnoreCase("edit")) {
+            getUpdateUsers();
 
             if ("" + userId != null && userId != 0) {
-                getUpdateUsers();
+
             }
         }
-*/
     }
 
-/*
     private void getUpdateUsers() {
         JsonObject object = addUpdateUserRequest();
         ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
@@ -308,20 +312,19 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
                 });
     }
 
-    */
-/**
+    /**
      * Json Object of addUpdateUserRequest
      *
      * @return
-     *//*
+     */
 
     private JsonObject addUpdateUserRequest() {
         GetUpdateUserAPIRequest model = new GetUpdateUserAPIRequest();
         model.setUserId(userId);
-        model.setFirstName(firstnameEdt.getText().toString());
-        model.setLastName(lastnameEdt.getText().toString());
-        model.setEmail(emailEdt.getText().toString());
-        model.setPhoneNumber(phonenoEdt.getText().toString());
+        model.setFirstName(firstStr);
+        model.setLastName(lastStr);
+        model.setEmail(emailStr);
+        model.setPhoneNumber(phoneStr);
         model.setPermissionGroupsId(allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId());
         model.setPassword("Admin123");
         model.setIsActive(true);
@@ -331,5 +334,4 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
     }
 
-*/
 }

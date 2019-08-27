@@ -27,6 +27,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     Context mContext;
     ArrayList<GetAllAccountUsersAPIResponse> userModels;
     private OnCartChangedListener onCartChangedListener;
+    String spinnerString;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels) {
         this.mContext = mContext;
@@ -47,7 +48,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
         ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
                 userModels.get(position).getLastName());
-        ((TextViewHolder)holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
+        ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
 
@@ -55,7 +56,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /*  ((TextViewHolder) holder).firstnameText.setVisibility(View.GONE);
+                ((TextViewHolder) holder).firstnameText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).emailText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).phonenoText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).spinnerText.setVisibility(View.GONE);
@@ -63,7 +64,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).emailEdt.setVisibility(View.VISIBLE);
-                ((TextViewHolder)holder).spinnerEdt.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).spinnerEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).phonenoEdt.setVisibility(View.VISIBLE);
 
                 ((TextViewHolder) holder).firstnameEdt.setText(userModels.get(position).getFirstName());
@@ -72,16 +73,87 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                 ((TextViewHolder) holder).phonenoEdt.setText(userModels.get(position).getPhoneNumber());
 
+                for (int j = 0; j < userModels.size(); j++)
+                    if (userModels.get(j).getPermissionGroupId().equals(spinnerString))
+                        ((TextViewHolder) holder).spinnerEdt.setSelection(j + 1);
+
+               /* ArrayList<String> arrayList = new ArrayList<>();
+                for (int j = 0; j < userModels.size(); j++) {
+                    arrayList.add(userModels.get(j).getPermissionGroupName());
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, arrayList);
+
+                for (int i = 0; i < arrayAdapter.getCount(); i++) {
+                    //if (spinnerString.equals(arrayAdapter.getItem(i).toString())) {
+                    ((TextViewHolder) holder).spinnerEdt.setSelection(i);
+
+                    break;
+                    // }
+                }*/
 
                 ((TextViewHolder) holder).editImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).dotImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).okImageView.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).closeImageView.setVisibility(View.VISIBLE);*/
+                ((TextViewHolder) holder).closeImageView.setVisibility(View.VISIBLE);
+            }
+        });
+        ((TextViewHolder) holder).okImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
+                        userModels.get(position).getLastName());
+                ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
+                ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
+
+                ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).phonenoText.setVisibility(View.VISIBLE);
+
+                ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).phonenoEdt.setVisibility(View.GONE);
+
+
+                ((TextViewHolder) holder).editImageView.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).dotImageView.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).okImageView.setVisibility(View.GONE);
+                ((TextViewHolder) holder).closeImageView.setVisibility(View.GONE);
+
+                onCartChangedListener.setCartClickListener("edit", position,
+                        ((TextViewHolder) holder).firstnameEdt.getText().toString(),
+                        ((TextViewHolder) holder).lastnameEdt.getText().toString(),
+                        ((TextViewHolder) holder).emailEdt.getText().toString(),
+                        ((TextViewHolder) holder).phonenoEdt.getText().toString());
             }
         });
 
+        ((TextViewHolder) holder).closeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
+                        userModels.get(position).getLastName());
+                ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
+                ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
+                ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
+
+                ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).phonenoText.setVisibility(View.VISIBLE);
 
 
+                ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).phonenoEdt.setVisibility(View.GONE);
+
+                ((TextViewHolder) holder).editImageView.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).dotImageView.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).okImageView.setVisibility(View.GONE);
+                ((TextViewHolder) holder).closeImageView.setVisibility(View.GONE);
+            }
+        });
 
         ((TextViewHolder) holder).dotImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,13 +173,10 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                             case R.id.deactive_userText:
                                 Toast.makeText(mContext, "DEACTIVATE USER", Toast.LENGTH_SHORT).show();
                                 break;
-
-
                         }
                         return false;
                     }
                 });
-
                 popup.show();
 
             }
@@ -153,7 +222,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
      * you can define any parameter as per your requirement
      */
     public interface OnCartChangedListener {
-        void setCartClickListener(String status, int position);
+        void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr, String emailIdStr, String phonenoStr);
 
     }
 
