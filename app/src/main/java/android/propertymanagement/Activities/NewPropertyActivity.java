@@ -1,5 +1,6 @@
 package android.propertymanagement.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.propertymanagement.Fragments.AccountOwnerFragment;
 import android.propertymanagement.Fragments.InformationFragment;
@@ -103,9 +104,13 @@ public class NewPropertyActivity extends BaseActivity {
 
             return mFragmentTitleList.get(position);
         }
-
-
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(NewPropertyActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

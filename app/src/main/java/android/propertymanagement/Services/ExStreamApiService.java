@@ -7,6 +7,7 @@ import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissi
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllStatesAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.LoginPostAPIResponse;
 
 import com.google.gson.JsonObject;
@@ -63,6 +64,13 @@ public interface ExStreamApiService {
      * */
     @PUT(APIConstantURL.GetUpdateAccountOwner)
     Observable<GetUpdateAccountOwnerAPIResponse> postUpdateAccountOwner(@Body JsonObject data, @Header("Authorization") String Authorization);
+
+
+    /*
+     * GetUpdateUser
+     * */
+    @PUT(APIConstantURL.GetUpdateUser)
+    Observable<GetUpdateUserAPIResponse> putUpdateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
 
 
     /*

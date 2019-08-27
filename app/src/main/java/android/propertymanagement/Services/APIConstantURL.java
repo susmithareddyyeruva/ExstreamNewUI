@@ -34,5 +34,9 @@ public interface APIConstantURL {
     //GetCreateUser
     String GetCreateUser = BASE_URL + "api/User/CreateUser";
 
+    //GetUpdateUser
+    String GetUpdateUser = BASE_URL + "api/User/UpdateUser";
+
+
 
 }

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.propertymanagement.Adapter.UsersListAdapter;
 import android.propertymanagement.ModelClass.RequestModelClasses.GetCreateUserAPIRequestModel;
+import android.propertymanagement.ModelClass.RequestModelClasses.GetUpdateUserAPIRequest;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
 import android.propertymanagement.Services.ExStreamApiService;
@@ -36,7 +38,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class UsersFragment extends Fragment {
+public class UsersFragment extends Fragment implements UsersListAdapter.OnCartChangedListener {
 
     private Context mContext;
     View rootView;
@@ -51,7 +53,7 @@ public class UsersFragment extends Fragment {
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
     GetCreateUserAPIResponse getCreateUserAPIResponse;
     ArrayAdapter<String> adapter_permission;
-    private int spinnerPermissionStr;
+    private int spinnerPermissionStr, userId;
     private ArrayList<GetAllAccountUsersAPIResponse> listResults = new ArrayList<>();
     private ArrayList<GetAllAccountUsersAPIResponse> BIndDatalistResults = new ArrayList<>();
 
@@ -81,32 +83,10 @@ public class UsersFragment extends Fragment {
         spinnerEdt = rootView.findViewById(R.id.spinnerEdt);
         recyclerViewUsers = rootView.findViewById(R.id.recyclerViewUsers);
 
-
-        /*ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("JAVA");
-        arrayList.add("ANDROID");
-        arrayList.add("C Language");
-        arrayList.add("CPP Language");
-        arrayList.add("Go Language");
-        arrayList.add("AVN SYSTEMS");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerEdt.setAdapter(arrayAdapter);
-        spinnerEdt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tutorialsName = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), "Selected: " + tutorialsName, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
-
         getAllAccountUsers();
 
         getSpinnerPermission();
+
 
     }
 
@@ -153,12 +133,18 @@ public class UsersFragment extends Fragment {
                     @Override
                     public void onNext(GetCreateUserAPIResponse mResponse) {
 
+/*
                         firstnameEdt.setText(mResponse.getFirstName().toString());
                         lastnameEdt.setText(mResponse.getLastName().toString());
                         emailEdt.setText(mResponse.getEmail().toString());
                         phonenoEdt.setText(mResponse.getPhoneNumber().toString());
-                        spinnerPermissionStr = mResponse.getPermissionGroupId();
-
+*/
+/*
+                        if (mResponse.getPermissionGroupId() != null) {
+                            spinnerPermissionStr = mResponse.getPermissionGroupId();
+                        }
+*/
+                        userId = mResponse.getUserId();
                         getAllAccountUsers();
 
                     }
@@ -247,6 +233,7 @@ public class UsersFragment extends Fragment {
                         usersListAdapter = new UsersListAdapter(mContext, mResponse);
                         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
                         recyclerViewUsers.setAdapter(usersListAdapter);
+                        usersListAdapter.setOnCartChangedListener(UsersFragment.this);
 
                     }
                 });
@@ -273,4 +260,76 @@ public class UsersFragment extends Fragment {
     }
 
 
+    @Override
+    public void setCartClickListener(String status, int position) {
+
+/*
+        if (status.equalsIgnoreCase("update")) {
+
+            if ("" + userId != null && userId != 0) {
+                getUpdateUsers();
+            }
+        }
+*/
+    }
+
+/*
+    private void getUpdateUsers() {
+        JsonObject object = addUpdateUserRequest();
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.putUpdateUser(object, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetUpdateUserAPIResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetUpdateUserAPIResponse mResponse) {
+
+                    }
+
+                });
+    }
+
+    */
+/**
+     * Json Object of addUpdateUserRequest
+     *
+     * @return
+     *//*
+
+    private JsonObject addUpdateUserRequest() {
+        GetUpdateUserAPIRequest model = new GetUpdateUserAPIRequest();
+        model.setUserId(userId);
+        model.setFirstName(firstnameEdt.getText().toString());
+        model.setLastName(lastnameEdt.getText().toString());
+        model.setEmail(emailEdt.getText().toString());
+        model.setPhoneNumber(phonenoEdt.getText().toString());
+        model.setPermissionGroupsId(allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId());
+        model.setPassword("Admin123");
+        model.setIsActive(true);
+        model.setIsAllProperties(true);
+
+        return new Gson().toJsonTree(model).getAsJsonObject();
+
+    }
+
+*/
 }

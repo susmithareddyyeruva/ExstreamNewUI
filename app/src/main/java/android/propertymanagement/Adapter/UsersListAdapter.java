@@ -26,6 +26,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
     Context mContext;
     ArrayList<GetAllAccountUsersAPIResponse> userModels;
+    private OnCartChangedListener onCartChangedListener;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels) {
         this.mContext = mContext;
@@ -51,79 +52,36 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
 
 
-        /*((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
+        ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TextViewHolder) holder).firstnameText.setVisibility(View.GONE);
+              /*  ((TextViewHolder) holder).firstnameText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).emailText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).phonenoText.setVisibility(View.GONE);
+                ((TextViewHolder) holder).spinnerText.setVisibility(View.GONE);
 
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).emailEdt.setVisibility(View.VISIBLE);
+                ((TextViewHolder)holder).spinnerEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).phonenoEdt.setVisibility(View.VISIBLE);
 
                 ((TextViewHolder) holder).firstnameEdt.setText(userModels.get(position).getFirstName());
                 ((TextViewHolder) holder).lastnameEdt.setText(userModels.get(position).getLastName());
                 ((TextViewHolder) holder).emailEdt.setText(userModels.get(position).getEmail());
-                ((TextViewHolder) holder).phonenoEdt.setText(userModels.get(position).getPhone());
+
+                ((TextViewHolder) holder).phonenoEdt.setText(userModels.get(position).getPhoneNumber());
 
 
                 ((TextViewHolder) holder).editImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).dotImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).okImageView.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).closeImageView.setVisibility(View.VISIBLE);
-            }
-        });
-        ((TextViewHolder) holder).okImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
-                        userModels.get(position).getLastName());
-                ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
-                ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhone());
-
-                ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).phonenoText.setVisibility(View.VISIBLE);
-
-                ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
-                ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
-                ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
-                ((TextViewHolder) holder).phonenoEdt.setVisibility(View.GONE);
-
-
-                ((TextViewHolder) holder).editImageView.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).dotImageView.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).okImageView.setVisibility(View.GONE);
-                ((TextViewHolder) holder).closeImageView.setVisibility(View.GONE);
+                ((TextViewHolder) holder).closeImageView.setVisibility(View.VISIBLE);*/
             }
         });
 
-        ((TextViewHolder) holder).closeImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
-                        userModels.get(position).getLastName());
-                ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
-                ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhone());
 
-                ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).phonenoText.setVisibility(View.VISIBLE);
 
-                ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
-                ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
-                ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
-                ((TextViewHolder) holder).phonenoEdt.setVisibility(View.GONE);
-
-                ((TextViewHolder) holder).editImageView.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).dotImageView.setVisibility(View.VISIBLE);
-                ((TextViewHolder) holder).okImageView.setVisibility(View.GONE);
-                ((TextViewHolder) holder).closeImageView.setVisibility(View.GONE);
-            }
-        });*/
 
         ((TextViewHolder) holder).dotImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,4 +147,21 @@ public class UsersListAdapter extends RecyclerView.Adapter {
             dotImageView = itemView.findViewById(R.id.dotImageView);
         }
     }
+
+    /**
+     * Container Activity must implement this interface
+     * you can define any parameter as per your requirement
+     */
+    public interface OnCartChangedListener {
+        void setCartClickListener(String status, int position);
+
+    }
+
+    /**
+     * @param onCartChangedListener
+     */
+    public void setOnCartChangedListener(OnCartChangedListener onCartChangedListener) {
+        this.onCartChangedListener = onCartChangedListener;
+    }
+
 }
