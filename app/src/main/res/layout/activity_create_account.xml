@@ -28,7 +28,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.9"
                     android:orientation="vertical">
 
                     <ImageView
@@ -312,10 +312,11 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".8"
-                                    android:text="@string/characters"
+                                    android:baselineAligned="false"
                                     android:buttonTint="@color/login_button"
+                                    android:text="@string/characters"
                                     android:textColor="@color/light_grey"
-                                    android:textSize="@dimen/dimen16sp"
+                                    android:textSize="@dimen/dimen15"
                                     android:textStyle="bold" />
 
                                 <RadioButton
@@ -325,7 +326,8 @@
                                     android:layout_weight="1.2"
                                     android:buttonTint="@color/login_button"
                                     android:text="@string/captial_lower"
-                                    android:textColor="@color/light_grey"                                    android:textSize="@dimen/dimen16sp"
+                                    android:textColor="@color/light_grey"
+                                    android:textSize="@dimen/dimen15"
                                     android:textStyle="bold" />
 
                                 <RadioButton
@@ -336,7 +338,7 @@
                                     android:buttonTint="@color/login_button"
                                     android:text="@string/alphanumeric"
                                     android:textColor="@color/light_grey"
-                                    android:textSize="@dimen/dimen16sp"
+                                    android:textSize="@dimen/dimen15"
                                     android:textStyle="bold" />
 
                             </LinearLayout>

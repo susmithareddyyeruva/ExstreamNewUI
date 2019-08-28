@@ -77,20 +77,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                     if (userModels.get(j).getPermissionGroupId().equals(spinnerString))
                         ((TextViewHolder) holder).spinnerEdt.setSelection(j + 1);
 
-               /* ArrayList<String> arrayList = new ArrayList<>();
-                for (int j = 0; j < userModels.size(); j++) {
-                    arrayList.add(userModels.get(j).getPermissionGroupName());
-                }
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, arrayList);
-
-                for (int i = 0; i < arrayAdapter.getCount(); i++) {
-                    //if (spinnerString.equals(arrayAdapter.getItem(i).toString())) {
-                    ((TextViewHolder) holder).spinnerEdt.setSelection(i);
-
-                    break;
-                    // }
-                }*/
-
                 ((TextViewHolder) holder).editImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).dotImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).okImageView.setVisibility(View.VISIBLE);

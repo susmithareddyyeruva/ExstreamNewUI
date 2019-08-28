@@ -1,5 +1,6 @@
 package android.propertymanagement.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -60,7 +61,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
     private Spinner spinnerState;
     private ImageView uploadImageView, okImageView, editImageView;
     private Subscription mSubscription;
-    private int accountId;
+    private Integer accountId;
     private String authorizationToken, imageString, extension, dateandtime, spinnerStateStr;
     public static final int PICK_IMAGE = 2;
     GetAccountOwnerDetailsAPIResponse getAccountOwnerDetailsAPIResponse;
@@ -87,7 +88,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
     }
 
     private void initViews() {
-
+        accountId = SharedPrefsData.getInt(mContext, Constants.ACCOUNTID, Constants.PREF_NAME);
         firstnameEdt = rootView.findViewById(R.id.firstnameEdt);
         lastnameEdt = rootView.findViewById(R.id.lastnameEdt);
         companyEdt = rootView.findViewById(R.id.companyEdt);
@@ -111,6 +112,17 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
         okImageView = rootView.findViewById(R.id.okImageView);
         editImageView = rootView.findViewById(R.id.editImageView);
 
+        firstnameEdt.setVisibility(View.VISIBLE);
+        lastnameEdt.setVisibility(View.VISIBLE);
+        companyEdt.setVisibility(View.VISIBLE);
+        mailingEdt.setVisibility(View.VISIBLE);
+        suite_unit_Edt.setVisibility(View.VISIBLE);
+        zip_Edt.setVisibility(View.VISIBLE);
+        cityEdt.setVisibility(View.VISIBLE);
+        spinnerState.setVisibility(View.VISIBLE);
+        emailEdt.setVisibility(View.VISIBLE);
+        phonenoEdt.setVisibility(View.VISIBLE);
+        okImageView.setVisibility(View.VISIBLE);
 
         getAccountOwnerDetails();
 
@@ -134,8 +146,27 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
         editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firstnameEdt.setVisibility(View.VISIBLE);
+                lastnameEdt.setVisibility(View.VISIBLE);
+                companyEdt.setVisibility(View.VISIBLE);
+                mailingEdt.setVisibility(View.VISIBLE);
+                suite_unit_Edt.setVisibility(View.VISIBLE);
+                zip_Edt.setVisibility(View.VISIBLE);
+                cityEdt.setVisibility(View.VISIBLE);
+                spinnerState.setVisibility(View.VISIBLE);
+                emailEdt.setVisibility(View.VISIBLE);
+                phonenoEdt.setVisibility(View.VISIBLE);
                 okImageView.setVisibility(View.VISIBLE);
                 editImageView.setVisibility(View.GONE);
+                firstLastNameTextView.setVisibility(View.GONE);
+                companyNameText.setVisibility(View.GONE);
+                mailingText.setVisibility(View.GONE);
+                suite_unitText.setVisibility(View.GONE);
+                zip_Text.setVisibility(View.GONE);
+                cityText.setVisibility(View.GONE);
+                emailText.setVisibility(View.GONE);
+                phonenoText.setVisibility(View.GONE);
+                spinnerStateText.setVisibility(View.GONE);
                 getAccountOwnerDetails();
             }
         });
@@ -232,13 +263,12 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
                         adapter_state = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, statesList);
                         adapter_state.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinnerState.setAdapter(adapter_state);
-                        if (getAccountOwnerDetailsAPIResponse != null && getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId() != null &&
+                        /*if (getAccountOwnerDetailsAPIResponse != null && getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId() != null &&
                                 !getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId().equals(""))
                             for (int j = 0; j < mStatesModel.size(); j++)
                                 if (mStatesModel.get(j).getStateId().equals(spinnerStateStr))
                                     spinnerState.setSelection(j + 1);
-
-                    }
+*/                    }
                 });
     }
 
@@ -283,6 +313,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
                         emailEdt.setText(mResponse.getAccountOwnerList().getEmail());
                         phonenoEdt.setText(mResponse.getAccountOwnerList().getPhoneNumber());
                         spinnerStateStr = mResponse.getAccountOwnerList().getStateCode();
+
+                        spinnerState.setSelection(mResponse.getAccountOwnerList().getStateId());
                         Glide.with(mContext).load(mResponse.getAccountOwnerList().getAccountLogo())
                                 .fitCenter()
                                 .error(R.drawable.icon_upload)
@@ -334,8 +366,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
                         phonenoEdt.setVisibility(View.GONE);
                         getAccountOwnerDetailsUpdated();
 
-                        okImageView.setVisibility(View.GONE);
-                        editImageView.setVisibility(View.VISIBLE);
+
 
 
                         CommonUtil.customToast(mResponse.getMessage(), mContext);
@@ -361,7 +392,6 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
      */
     private JsonObject addUpdateAccountOwnerRequest() {
         GetUpdateAccountOwnerAPIRequestModel model = new GetUpdateAccountOwnerAPIRequestModel();
-        accountId = SharedPrefsData.getInt(mContext, Constants.ACCOUNTID, Constants.PREF_NAME);
         model.setFirstName(firstnameEdt.getText().toString());
         model.setLastName(lastnameEdt.getText().toString());
         model.setAccountName(companyEdt.getText().toString());
@@ -378,7 +408,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
         model.setLastModifiedBy(accountId);
         model.setLastModifiedDate(dateandtime);
         if (imageString != null) {
-            model.setAccountLogo(imageString);
+            model.setAccountLogo("data:image/jpg;base64,"+imageString);
             model.setFileExists(true);
         } else {
             model.setFileExists(false);
@@ -415,6 +445,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
                         }
                     }
 
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onNext(GetAccountOwnerDetailsAPIResponse mResponse) {
                         firstLastNameTextView.setVisibility(View.VISIBLE);
@@ -441,7 +472,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
                                 .fitCenter()
                                 .error(R.drawable.icon_upload)
                                 .into(uploadImageView);
-
+                        okImageView.setVisibility(View.GONE);
+                        editImageView.setVisibility(View.VISIBLE);
                     }
                 });
     }

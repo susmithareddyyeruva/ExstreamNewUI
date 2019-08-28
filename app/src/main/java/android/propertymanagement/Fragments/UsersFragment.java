@@ -132,19 +132,6 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
                     @Override
                     public void onNext(GetCreateUserAPIResponse mResponse) {
-
-/*
-                        firstnameEdt.setText(mResponse.getFirstName().toString());
-                        lastnameEdt.setText(mResponse.getLastName().toString());
-                        emailEdt.setText(mResponse.getEmail().toString());
-                        phonenoEdt.setText(mResponse.getPhoneNumber().toString());
-*/
-/*
-                        if (mResponse.getPermissionGroupId() != null) {
-                            spinnerPermissionStr = mResponse.getPermissionGroupId();
-                        }
-*/
-
                         getAllAccountUsers();
 
                     }
@@ -181,20 +168,20 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
                     @Override
                     public void onNext(ArrayList<GetAllPermissionAPIResponse> mResponse) {
 
-                        ArrayList statesList = new ArrayList();
+                        ArrayList permissionsList = new ArrayList();
                         allPermissionAPIResponse = mResponse;
-                        statesList.add(getString(R.string.select_permission));
+                        permissionsList.add(getString(R.string.select_permission));
                         for (int i = 0; i < allPermissionAPIResponse.size(); i++)
-                            statesList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
-                        adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, statesList);
+                            permissionsList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
+                        adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, permissionsList);
                         adapter_permission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinnerEdt.setAdapter(adapter_permission);
-                        if (getCreateUserAPIResponse != null && getCreateUserAPIResponse.getPermissionGroupId() != null &&
+                        /*if (getCreateUserAPIResponse != null && getCreateUserAPIResponse.getPermissionGroupId() != null &&
                                 !getCreateUserAPIResponse.getPermissionGroupId().equals(""))
                             for (int j = 0; j < allPermissionAPIResponse.size(); j++)
                                 if (allPermissionAPIResponse.get(j).getPermissionGroupId().equals(spinnerPermissionStr))
                                     spinnerEdt.setSelection(j + 1);
-
+*/
                     }
                 });
 

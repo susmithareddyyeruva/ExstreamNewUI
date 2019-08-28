@@ -21,9 +21,10 @@
         android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
+        app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        app:menu="@menu/activity_home_drawer"
-        >
+        app:itemTextAppearance="@style/RobotoTextViewStyle"
+        app:menu="@menu/activity_home_drawer">
 
 
         <RelativeLayout

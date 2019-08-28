@@ -13,7 +13,7 @@
 
 
     <android.support.v7.widget.CardView
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimen10"

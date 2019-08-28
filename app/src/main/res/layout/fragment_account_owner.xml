@@ -25,14 +25,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/black"
+                    android:backgroundTint="@color/light_grey"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/firstname"
-                    android:inputType="textEmailAddress"
+                    android:visibility="gone"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -42,14 +42,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/black"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/light_grey"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/lastname"
-                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <TextView
@@ -57,6 +57,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:text="name"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen5"
                     android:textSize="@dimen/dimen16sp"
                     android:visibility="gone"/>
 
@@ -66,14 +71,15 @@
                 android:id="@+id/companyEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:hint="@string/company"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp" />
 
             <TextView
@@ -81,6 +87,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:text="company name"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginBottom="@dimen/dimen5"
                 android:textSize="@dimen/dimen16sp"
                 android:visibility="gone"/>
 
@@ -88,14 +99,15 @@
                 android:id="@+id/mailingEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:hint="@string/mailing_address"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp" />
 
             <TextView
@@ -104,6 +116,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen16sp"
+                android:text="email"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginBottom="@dimen/dimen5"
                 android:visibility="gone"/>
 
 
@@ -111,14 +128,14 @@
                 android:id="@+id/suite_unit_Edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:hint="@string/suite_unit"
-                android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp" />
 
             <TextView
@@ -127,6 +144,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen16sp"
+                android:text="suite"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginBottom="@dimen/dimen5"
                 android:visibility="gone"/>
 
 
@@ -134,14 +156,15 @@
                 android:id="@+id/zip_Edt"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:hint="@string/zip"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp" />
             <TextView
                 android:id="@+id/zip_Text"
@@ -149,6 +172,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen16sp"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:text="zip code"
                 android:visibility="gone"/>
 
             <LinearLayout
@@ -161,20 +189,21 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/black"
+                    android:backgroundTint="@color/light_grey"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/city"
-                    android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:visibility="gone"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <Spinner
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:id="@+id/spinnerState"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
                     >
@@ -187,6 +216,12 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dimen16sp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen5"
+                    android:text="city"
                     android:visibility="gone"/>
 
                 <TextView
@@ -194,6 +229,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:text="city"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:layout_marginBottom="@dimen/dimen5"
                     android:textSize="@dimen/dimen16sp"
                     android:visibility="gone"/>
 
@@ -203,20 +244,26 @@
                 android:id="@+id/emailEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp" />
             <TextView
                 android:id="@+id/emailText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:text="email"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginBottom="@dimen/dimen5"
                 android:textSize="@dimen/dimen16sp"
                 android:visibility="gone"/>
 
@@ -224,14 +271,15 @@
                 android:id="@+id/phonenoEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
                 android:hint="@string/phone_no"
                 android:inputType="number"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp" />
 
             <TextView
@@ -240,6 +288,11 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen16sp"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:text="phone number"
                 android:visibility="gone"/>
         </LinearLayout>
 
@@ -321,6 +374,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_alignParentRight="true"
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/dimen15"
                     android:layout_marginBottom="@dimen/dimen10"
                     android:src="@drawable/icon_ok"

@@ -340,7 +340,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                             SharedPrefsData.putInt(context, Constants.ISLOGIN, 1, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.USERNAME, userNameStr, Constants.PREF_NAME);
-                            SharedPrefsData.putString(context, Constants.ACCOUNTID, AccountIdStr, Constants.PREF_NAME);
+                            //SharedPrefsData.putString(context, Constants.ACCOUNTID, AccountIdStr, Constants.PREF_NAME);
                             SharedPrefsData.putInt(context, Constants.ACCOUNTID, AccountIdInt, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.accountName, accountNameStr, Constants.PREF_NAME);
                             SharedPrefsData.putString(context, Constants.useremail, useremailStr, Constants.PREF_NAME);
