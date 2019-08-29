@@ -42,14 +42,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
+                android:textColorHint="@color/light_grey"
                 android:hint="@string/firstname"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
                 android:textSize="@dimen/dimen16sp"
 
                 />
@@ -59,14 +59,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
+                android:textColorHint="@color/light_grey"
                 android:hint="@string/lastname"
-                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
                 android:textSize="@dimen/dimen16sp" />
 
             <Spinner
@@ -81,14 +80,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
+                android:textColorHint="@color/light_grey"
                 android:hint="@string/email_user"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
                 android:textSize="@dimen/dimen16sp"
 
                 />
@@ -98,14 +97,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/light_grey"
                 android:fontFamily="@font/oswald_extralight"
+                android:textColorHint="@color/light_grey"
                 android:hint="@string/phone"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text=""
-                android:textColorHint="@color/light_grey_color"
                 android:textSize="@dimen/dimen16sp" />
 
             <ImageView

@@ -30,12 +30,13 @@ import android.widget.TextView;
 import static android.propertymanagement.Utils.Constants.PREF_NAME;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private ImageView edit_info, properties_icon;
     private AlertDialog alertDialog, alert;
     TextView logout_dialog,username_dialog,myprofile_dialog,title_text;
     String userName,user;
+    private TextView about_tv, terms_of_use_tv, privacy_policy_tv;
 
 
     @Override
@@ -75,6 +76,9 @@ public class HomeActivity extends AppCompatActivity
     private void initViews() {
         edit_info = findViewById(R.id.edit_info);
         properties_icon = findViewById(R.id.properties_icon);
+        about_tv = findViewById(R.id.about_tv);
+        terms_of_use_tv = findViewById(R.id.terms_of_use_tv);
+        privacy_policy_tv = findViewById(R.id.privacy_policy_tv);
     }
 
     private void setViews() {
@@ -99,7 +103,12 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
+        about_tv.setOnClickListener(this);
+        terms_of_use_tv.setOnClickListener(this);
+        privacy_policy_tv.setOnClickListener(this);
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -165,6 +174,71 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
+        alertDialog.show();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.about_tv:
+
+                /*
+                 *  Custom dialog for aboutus
+                 */
+                aboutUsDialog();
+
+                break;
+
+            case R.id.terms_of_use_tv:
+
+                /*
+                 * Custom dialog for terms of use
+                 */
+                termsOfUseDialog();
+
+                break;
+
+            case R.id.privacy_policy_tv:
+
+                /*
+                 * Custom dialog for privacy policy
+                 */
+                privacyPolicyDialog();
+
+                break;
+
+        }
+
+    }
+    private void aboutUsDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_about_us, null);
+        dialogBuilder.setView(dialogView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void termsOfUseDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_terms_of_use, null);
+        dialogBuilder.setView(dialogView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void privacyPolicyDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_privacy_policy, null);
+        dialogBuilder.setView(dialogView);
+        alertDialog = dialogBuilder.create();
         alertDialog.show();
     }
 

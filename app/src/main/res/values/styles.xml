@@ -17,6 +17,9 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Base.Widget.Design.TabLayoutcustom" parent="android:Widget">
+        <item name="tabBackground">@drawable/tab_background</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -47,6 +50,10 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.AppBarOverlayTab" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:background">@color/tabs_background</item>
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

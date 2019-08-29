@@ -12,19 +12,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <ImageView
+            android:id="@+id/back_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="@dimen/dimen10"
+            android:src="@drawable/ic_arrow_back" />
+        <ImageView
+            android:id="@+id/toolbar_image"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_gravity="start"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/logos_branding_home" />
+
+        <TextView
+            android:id="@+id/cmpny_stp"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/oswald_extralight"
             android:text="@string/companysetup"
-            android:textSize="@dimen/dimen16sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/oswald_extralight"/>
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/dimen16sp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_gravity="center"
             android:src="@drawable/ic_play_arrow_black_24dp" />
 
         <TextView
@@ -33,6 +51,8 @@
             android:text="@string/account_information"
             android:textSize="@dimen/dimen16sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
             android:fontFamily="@font/oswald_extralight"/>
 
     </LinearLayout>
@@ -43,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/main_lyt"
         android:fitsSystemWindows="true"
+        android:background="@color/tabs_background"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.TabLayout
@@ -50,9 +71,12 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
+            style="@style/Base.Widget.Design.TabLayoutcustom"
             android:visibility="visible"
             app:tabMode="scrollable"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginLeft="@dimen/dimen10"
+            app:tabIndicatorColor="@color/white"
             app:tabSelectedTextColor="@color/colorPrimary"
             app:tabTextColor="@color/white"/>
 

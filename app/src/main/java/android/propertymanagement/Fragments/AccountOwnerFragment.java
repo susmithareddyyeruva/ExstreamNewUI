@@ -22,7 +22,9 @@ import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +52,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class AccountOwnerFragment extends Fragment implements OnBackPressed {
+public class AccountOwnerFragment extends Fragment implements OnBackPressed, View.OnClickListener {
 
     private Context mContext;
     View rootView;
@@ -62,11 +64,13 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
     private ImageView uploadImageView, okImageView, editImageView;
     private Subscription mSubscription;
     private Integer accountId;
+    private AlertDialog alertDialog, alert;
     private String authorizationToken, imageString, extension, dateandtime, spinnerStateStr;
     public static final int PICK_IMAGE = 2;
     GetAccountOwnerDetailsAPIResponse getAccountOwnerDetailsAPIResponse;
     ArrayList<GetAllStatesAPIResponse> mStatesModel;
     ArrayAdapter<String> adapter_state;
+    private TextView about_tv, terms_of_use_tv, privacy_policy_tv;
 
 
     @Override
@@ -111,6 +115,9 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
         uploadImageView = rootView.findViewById(R.id.uploadImageView);
         okImageView = rootView.findViewById(R.id.okImageView);
         editImageView = rootView.findViewById(R.id.editImageView);
+        about_tv = rootView.findViewById(R.id.about_tv);
+        terms_of_use_tv = rootView.findViewById(R.id.terms_of_use_tv);
+        privacy_policy_tv = rootView.findViewById(R.id.privacy_policy_tv);
 
         firstnameEdt.setVisibility(View.VISIBLE);
         lastnameEdt.setVisibility(View.VISIBLE);
@@ -170,6 +177,9 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
                 getAccountOwnerDetails();
             }
         });
+        about_tv.setOnClickListener(this);
+        terms_of_use_tv.setOnClickListener(this);
+        privacy_policy_tv.setOnClickListener(this);
     }
 
     /**
@@ -408,7 +418,9 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
         model.setLastModifiedBy(accountId);
         model.setLastModifiedDate(dateandtime);
         if (imageString != null) {
-            model.setAccountLogo("data:image/jpg;base64,"+imageString);
+            String imageStr = "data:image/jpg;base64,"+imageString;
+            model.setAccountLogo(imageStr);
+            //model.setAccountLogo("data:image/jpg;base64,"+imageString);
             model.setFileExists(true);
         } else {
             model.setFileExists(false);
@@ -482,4 +494,71 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed {
     public void onBackPressed() {
 
     }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.about_tv:
+
+                /*
+                 *  Custom dialog for aboutus
+                 */
+                aboutUsDialog();
+
+                break;
+
+            case R.id.terms_of_use_tv:
+
+                /*
+                 * Custom dialog for terms of use
+                 */
+                termsOfUseDialog();
+
+                break;
+
+            case R.id.privacy_policy_tv:
+
+                /*
+                 * Custom dialog for privacy policy
+                 */
+                privacyPolicyDialog();
+
+                break;
+
+        }
+
+    }
+
+    private void aboutUsDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_about_us, null);
+        dialogBuilder.setView(dialogView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void termsOfUseDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_terms_of_use, null);
+        dialogBuilder.setView(dialogView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void privacyPolicyDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_privacy_policy, null);
+        dialogBuilder.setView(dialogView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
+
 }
