@@ -49,7 +49,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     private OnCartChangedListener onCartChangedListener;
     String spinnerString;
     private String firstStr, lastStr, emailStr, phoneStr, spinnerStr,editfirstnameStr,
-            editlastnameStr,editemailstr,editphnoStr;
+            editlastnameStr,editemailstr,editphnoStr,selectedUseremail;
     int spinnerSelectedId,selecteduserId;
     private String authorizationToken;
     private Subscription mSubscription;
@@ -87,7 +87,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         emailText.setText(userModels.get(position).getEmail());
         phonenoText.setText(userModels.get(position).getPhoneNumber());
         selecteduserId = userModels.get(position).getUserId();
-
+        selectedUseremail = userModels.get(position).getEmail();
 
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
