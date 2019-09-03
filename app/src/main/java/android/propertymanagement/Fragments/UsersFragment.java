@@ -256,7 +256,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
     public void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr,
                                      String emailIdStr, String phonenoStr,int spinnerSelectId ) {
 
-        firstStr = firstNameStr;
+      /*  firstStr = firstNameStr;
         lastStr = lastNameStr;
         emailStr = emailIdStr;
         phoneStr = phonenoStr;
@@ -267,7 +267,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
             if ("" + userId != null && userId != 0) {
 
             }
-        }
+        }*/
     }
 
     private void getUpdateUsers() {

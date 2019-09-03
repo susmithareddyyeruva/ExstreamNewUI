@@ -1,13 +1,16 @@
 package android.propertymanagement.Adapter;
 
 import android.content.Context;
+import android.propertymanagement.ModelClass.RequestModelClasses.GetUpdateUserAPIRequest;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.ModelClass.UserModel;
 import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
 import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
+import android.propertymanagement.Utils.CommonUtil;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.annotation.NonNull;
@@ -25,6 +28,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +47,12 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllAccountUsersAPIResponse> userModels;
     private OnCartChangedListener onCartChangedListener;
     String spinnerString;
+    private String firstStr, lastStr, emailStr, phoneStr;
+    int spinnerSelectedId;
     private String authorizationToken;
     private Subscription mSubscription;
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
+    GetUpdateUserAPIResponse getUpdateUserAPIResponses;
     ArrayAdapter<String> adapter_permission;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels) {
@@ -124,6 +133,12 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                 int spinner_selected_id = allPermissionAPIResponse.get(((TextViewHolder) holder)
                         .spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId();
+                firstStr = ((TextViewHolder) holder).firstnameEdt.getText().toString();
+                lastStr = ((TextViewHolder) holder).lastnameEdt.getText().toString();
+                emailStr = ((TextViewHolder) holder).emailEdt.getText().toString();
+                phoneStr = ((TextViewHolder) holder).phonenoEdt.getText().toString();
+
+                getUpdateUsers();
                 onCartChangedListener.setCartClickListener("edit", position,
                         ((TextViewHolder) holder).firstnameEdt.getText().toString(),
                         ((TextViewHolder) holder).lastnameEdt.getText().toString(),
@@ -132,7 +147,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         spinner_selected_id);
             }
         });
-
 
         ((TextViewHolder) holder).closeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +251,67 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 });
     }
 
+    private void getUpdateUsers() {
+        JsonObject object = addUpdateUserRequest();
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.putUpdateUser(object, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetUpdateUserAPIResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetUpdateUserAPIResponse mResponse) {
+
+                        getUpdateUserAPIResponses=mResponse;
+
+                        CommonUtil.customToast(mResponse.toString(), mContext);
+
+                    }
+
+                });
+    }
+
+    /**
+     * Json Object of addUpdateUserRequest
+     *
+     * @return
+     */
+
+    private JsonObject addUpdateUserRequest() {
+        GetUpdateUserAPIRequest model = new GetUpdateUserAPIRequest();
+        model.setUserId(userModels.get(0).getUserId());
+        model.setFirstName(firstStr);
+        model.setLastName(lastStr);
+        model.setEmail(emailStr);
+        model.setPhoneNumber(phoneStr);
+        model.setPermissionGroupsId(spinnerSelectedId);
+        model.setPassword("Admin123");
+        model.setIsActive(true);
+        model.setIsAllProperties(true);
+
+        return new Gson().toJsonTree(model).getAsJsonObject();
+
+    }
+
+
     @Override
     public int getItemCount() {
         return userModels.size();
@@ -276,7 +351,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
      */
     public interface OnCartChangedListener {
         void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr,
-                                  String emailIdStr, String phonenoStr,int spinnerSelectId);
+                                  String emailIdStr, String phonenoStr, int spinnerSelectId);
 
     }
 
