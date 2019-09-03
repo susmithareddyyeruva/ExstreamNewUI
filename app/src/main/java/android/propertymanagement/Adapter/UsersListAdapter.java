@@ -2,8 +2,14 @@ package android.propertymanagement.Adapter;
 
 import android.content.Context;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
 import android.propertymanagement.ModelClass.UserModel;
 import android.propertymanagement.R;
+import android.propertymanagement.Services.APIConstantURL;
+import android.propertymanagement.Services.ExStreamApiService;
+import android.propertymanagement.Services.ServiceFactory;
+import android.propertymanagement.Utils.Constants;
+import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,8 +25,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class UsersListAdapter extends RecyclerView.Adapter {
 
@@ -28,6 +41,10 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllAccountUsersAPIResponse> userModels;
     private OnCartChangedListener onCartChangedListener;
     String spinnerString;
+    private String authorizationToken;
+    private Subscription mSubscription;
+    ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
+    ArrayAdapter<String> adapter_permission;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels) {
         this.mContext = mContext;
@@ -91,6 +108,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         userModels.get(position).getLastName());
                 ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
                 ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
+                ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
 
                 ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
@@ -99,6 +117,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).spinnerEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).phonenoEdt.setVisibility(View.GONE);
 
 
@@ -134,6 +153,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).phonenoEdt.setVisibility(View.GONE);
+                ((TextViewHolder) holder).spinnerEdt.setVisibility(View.GONE);
 
                 ((TextViewHolder) holder).editImageView.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).dotImageView.setVisibility(View.VISIBLE);
@@ -169,6 +189,47 @@ public class UsersListAdapter extends RecyclerView.Adapter {
             }
         });
 
+        authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.GetPermissionGroups(APIConstantURL.GetPermissionGroups, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ArrayList<GetAllPermissionAPIResponse>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ArrayList<GetAllPermissionAPIResponse> mResponse) {
+
+                        ArrayList permissionsList = new ArrayList();
+                        allPermissionAPIResponse = mResponse;
+                        permissionsList.add(mContext.getString(R.string.select_permission));
+                        for (int i = 0; i < allPermissionAPIResponse.size(); i++)
+                            permissionsList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
+                        adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, permissionsList);
+                        adapter_permission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        ((TextViewHolder) holder).spinnerEdt.setAdapter(adapter_permission);
+                        for (int j = 0; j < userModels.size(); j++)
+                            if (userModels.get(j).getPermissionGroupId().equals(spinnerString))
+                                ((TextViewHolder) holder).spinnerEdt.setSelection(j + 1);
+                    }
+                });
     }
 
     @Override
@@ -219,5 +280,4 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     public void setOnCartChangedListener(OnCartChangedListener onCartChangedListener) {
         this.onCartChangedListener = onCartChangedListener;
     }
-
 }
