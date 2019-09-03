@@ -81,7 +81,7 @@ public class GetUpdateUserAPIResponse {
     private Integer permissionGroupId;
     @SerializedName("permissionGroupName")
     @Expose
-    private Object permissionGroupName;
+    private String permissionGroupName;
     @SerializedName("propertyUserTypeId")
     @Expose
     private Object propertyUserTypeId;
@@ -315,11 +315,11 @@ public class GetUpdateUserAPIResponse {
         this.permissionGroupId = permissionGroupId;
     }
 
-    public Object getPermissionGroupName() {
+    public String getPermissionGroupName() {
         return permissionGroupName;
     }
 
-    public void setPermissionGroupName(Object permissionGroupName) {
+    public void setPermissionGroupName(String permissionGroupName) {
         this.permissionGroupName = permissionGroupName;
     }
 

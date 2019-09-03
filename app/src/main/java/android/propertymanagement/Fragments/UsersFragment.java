@@ -60,6 +60,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
     private ArrayList<GetAllAccountUsersAPIResponse> listResults = new ArrayList<>();
     private ArrayList<GetAllAccountUsersAPIResponse> BIndDatalistResults = new ArrayList<>();
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -135,6 +136,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
                     @Override
                     public void onNext(GetCreateUserAPIResponse mResponse) {
+
                         getAllAccountUsers();
 
                     }
@@ -191,7 +193,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
     }
 
 
-    private void getAllAccountUsers() {
+    public void getAllAccountUsers() {
         authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
         ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
         mSubscription = service.GetAllAccountUsers(APIConstantURL.GetAllAccountUsers, "bearer" + " " + authorizationToken)
@@ -219,8 +221,9 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
                     @Override
                     public void onNext(ArrayList<GetAllAccountUsersAPIResponse> mResponse) {
-
-                        usersListAdapter = new UsersListAdapter(mContext, mResponse);
+                        listResults =  new ArrayList<>();
+                        listResults = mResponse;
+                        usersListAdapter = new UsersListAdapter(mContext, listResults,UsersFragment.this);
                         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
                         recyclerViewUsers.setAdapter(usersListAdapter);
                         usersListAdapter.setOnCartChangedListener(UsersFragment.this);
@@ -270,63 +273,8 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
         }*/
     }
 
-    private void getUpdateUsers() {
-        JsonObject object = addUpdateUserRequest();
-        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
-        mSubscription = service.putUpdateUser(object, "bearer" + " " + authorizationToken)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<GetUpdateUserAPIResponse>() {
-                    @Override
-                    public void onCompleted() {
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
-                        }
-                    }
 
-                    @Override
-                    public void onNext(GetUpdateUserAPIResponse mResponse) {
-
-                        CommonUtil.customToast(mResponse.toString(), mContext);
-
-                    }
-
-                });
-    }
-
-    /**
-     * Json Object of addUpdateUserRequest
-     *
-     * @return
-     */
-
-    private JsonObject addUpdateUserRequest() {
-        GetUpdateUserAPIRequest model = new GetUpdateUserAPIRequest();
-        model.setUserId(userId);
-        model.setFirstName(firstStr);
-        model.setLastName(lastStr);
-        model.setEmail(emailStr);
-        model.setPhoneNumber(phoneStr);
-        model.setPermissionGroupsId(spinnerSelectedId);
-        model.setPassword("Admin123");
-        model.setIsActive(true);
-        model.setIsAllProperties(true);
-
-        return new Gson().toJsonTree(model).getAsJsonObject();
-
-    }
 
     private void  getDeactivateUser(){
         authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);

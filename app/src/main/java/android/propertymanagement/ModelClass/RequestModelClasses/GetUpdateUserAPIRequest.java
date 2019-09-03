@@ -23,9 +23,9 @@ public class GetUpdateUserAPIRequest {
     @SerializedName("isActive")
     @Expose
     private Boolean isActive;
-    @SerializedName("permissionGroupsId")
+    @SerializedName("permissionGroupId")
     @Expose
-    private Integer permissionGroupsId;
+    private Integer permissionGroupId;
     @SerializedName("password")
     @Expose
     private String password;
@@ -81,12 +81,12 @@ public class GetUpdateUserAPIRequest {
         this.isActive = isActive;
     }
 
-    public Integer getPermissionGroupsId() {
-        return permissionGroupsId;
+    public Integer getPermissionGroupId() {
+        return permissionGroupId;
     }
 
-    public void setPermissionGroupsId(Integer permissionGroupsId) {
-        this.permissionGroupsId = permissionGroupsId;
+    public void setPermissionGroupId(Integer permissionGroupId) {
+        this.permissionGroupId = permissionGroupId;
     }
 
     public String getPassword() {
