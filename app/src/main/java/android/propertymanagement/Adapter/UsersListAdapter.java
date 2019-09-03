@@ -122,11 +122,14 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 ((TextViewHolder) holder).okImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).closeImageView.setVisibility(View.GONE);
 
+                int spinner_selected_id = allPermissionAPIResponse.get(((TextViewHolder) holder)
+                        .spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId();
                 onCartChangedListener.setCartClickListener("edit", position,
                         ((TextViewHolder) holder).firstnameEdt.getText().toString(),
                         ((TextViewHolder) holder).lastnameEdt.getText().toString(),
                         ((TextViewHolder) holder).emailEdt.getText().toString(),
-                        ((TextViewHolder) holder).phonenoEdt.getText().toString());
+                        ((TextViewHolder) holder).phonenoEdt.getText().toString(),
+                        spinner_selected_id);
             }
         });
 
@@ -272,7 +275,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
      * you can define any parameter as per your requirement
      */
     public interface OnCartChangedListener {
-        void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr, String emailIdStr, String phonenoStr);
+        void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr,
+                                  String emailIdStr, String phonenoStr,int spinnerSelectId);
 
     }
 

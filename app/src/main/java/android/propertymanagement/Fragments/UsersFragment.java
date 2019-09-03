@@ -13,6 +13,7 @@ import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
 import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
+import android.propertymanagement.Utils.CommonUtil;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -47,6 +49,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
     private Spinner spinnerEdt;
     private RecyclerView recyclerViewUsers;
     private String firstStr, lastStr, emailStr, phoneStr;
+    int spinnerSelectedId;
     UsersListAdapter usersListAdapter;
     private String authorizationToken;
     private Subscription mSubscription;
@@ -250,12 +253,14 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
 
     @Override
-    public void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr, String emailIdStr, String phonenoStr) {
+    public void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr,
+                                     String emailIdStr, String phonenoStr,int spinnerSelectId ) {
 
         firstStr = firstNameStr;
         lastStr = lastNameStr;
         emailStr = emailIdStr;
         phoneStr = phonenoStr;
+        spinnerSelectedId = spinnerSelectId;
         if (status.equalsIgnoreCase("edit")) {
             getUpdateUsers();
 
@@ -294,6 +299,8 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
                     @Override
                     public void onNext(GetUpdateUserAPIResponse mResponse) {
 
+                        CommonUtil.customToast(mResponse.toString(), mContext);
+
                     }
 
                 });
@@ -312,7 +319,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
         model.setLastName(lastStr);
         model.setEmail(emailStr);
         model.setPhoneNumber(phoneStr);
-        model.setPermissionGroupsId(allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId());
+        model.setPermissionGroupsId(spinnerSelectedId);
         model.setPassword("Admin123");
         model.setIsActive(true);
         model.setIsAllProperties(true);

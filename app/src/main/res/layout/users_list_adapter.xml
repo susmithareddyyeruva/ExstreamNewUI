@@ -62,7 +62,6 @@
                 android:id="@+id/spinnerEdt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen10"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:visibility="gone"/>
