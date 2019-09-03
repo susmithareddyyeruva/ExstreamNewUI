@@ -321,4 +321,39 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
     }
 
+    private void  getDeactivateUser(){
+        authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.GetAllAccountUsers(APIConstantURL.GetDeleteUser+userId, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ArrayList<GetAllAccountUsersAPIResponse>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ArrayList<GetAllAccountUsersAPIResponse> mResponse) {
+
+
+                    }
+                });
+
+    }
+
 }

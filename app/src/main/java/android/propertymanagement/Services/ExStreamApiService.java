@@ -84,4 +84,12 @@ public interface ExStreamApiService {
     @POST(APIConstantURL.GetCreateUser)
     Observable<GetCreateUserAPIResponse> GetCreateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
 
+
+    /*
+     * GetDeleteUser
+     * */
+    @GET
+    Observable<ArrayList<GetAllAccountUsersAPIResponse>> GetDeleteUser(@Url String url, @Header("Authorization") String Authorization);
+
+
 }

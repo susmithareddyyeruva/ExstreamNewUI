@@ -37,6 +37,13 @@ public interface APIConstantURL {
     //GetUpdateUser
     String GetUpdateUser = BASE_URL + "api/User/UpdateUser";
 
+    // GetDeleteUser
+    String GetDeleteUser = BASE_URL + "api/User/DeleteUser/";
 
+    //GetActiveUser
+    String GetActiveUser = BASE_URL + "api/User/ActiveUser/";
+
+    //GetResetPasswordByAdmin
+    String GetResetPasswordByAdmin = BASE_URL + "api/User/ResetPasswordByAdmin";
 
 }
