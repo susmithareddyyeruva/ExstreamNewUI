@@ -273,12 +273,16 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                         adapter_state = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, statesList);
                         adapter_state.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinnerState.setAdapter(adapter_state);
-                        /*if (getAccountOwnerDetailsAPIResponse != null && getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId() != null &&
+                        int spinner_txt = getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId();
+                        if ( getAccountOwnerDetailsAPIResponse.getAccountOwnerList() != null &&
+                                getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId() != null &&
                                 !getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId().equals(""))
-                            for (int j = 0; j < mStatesModel.size(); j++)
-                                if (mStatesModel.get(j).getStateId().equals(spinnerStateStr))
+                            for (int j = 0; j < mStatesModel.size(); j++) {
+                                if (mStatesModel.get(j).getStateId().equals(spinner_txt))
                                     spinnerState.setSelection(j + 1);
-*/                    }
+
+                            }
+                    }
                 });
     }
 
@@ -312,7 +316,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
 
                     @Override
                     public void onNext(GetAccountOwnerDetailsAPIResponse mResponse) {
-
+                        getAccountOwnerDetailsAPIResponse =  mResponse;
                         firstnameEdt.setText(mResponse.getAccountOwnerList().getFirstName());
                         lastnameEdt.setText(mResponse.getAccountOwnerList().getLastName());
                         companyEdt.setText(mResponse.getAccountOwnerList().getAccountName());
@@ -324,7 +328,7 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                         phonenoEdt.setText(mResponse.getAccountOwnerList().getPhoneNumber());
                         spinnerStateStr = mResponse.getAccountOwnerList().getStateCode();
 
-                        spinnerState.setSelection(mResponse.getAccountOwnerList().getStateId());
+                        //spinnerState.setSelection(mResponse.getAccountOwnerList().getStateId());
                         Glide.with(mContext).load(mResponse.getAccountOwnerList().getAccountLogo())
                                 .fitCenter()
                                 .error(R.drawable.icon_upload)

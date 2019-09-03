@@ -90,10 +90,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                 ((TextViewHolder) holder).phonenoEdt.setText(userModels.get(position).getPhoneNumber());
 
-                for (int j = 0; j < userModels.size(); j++)
-                    if (userModels.get(j).getPermissionGroupId().equals(spinnerString))
-                        ((TextViewHolder) holder).spinnerEdt.setSelection(j + 1);
-
                 ((TextViewHolder) holder).editImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).dotImageView.setVisibility(View.GONE);
                 ((TextViewHolder) holder).okImageView.setVisibility(View.VISIBLE);
@@ -223,11 +219,17 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         for (int i = 0; i < allPermissionAPIResponse.size(); i++)
                             permissionsList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
                         adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, permissionsList);
+
                         adapter_permission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         ((TextViewHolder) holder).spinnerEdt.setAdapter(adapter_permission);
-                        for (int j = 0; j < userModels.size(); j++)
-                            if (userModels.get(j).getPermissionGroupId().equals(spinnerString))
-                                ((TextViewHolder) holder).spinnerEdt.setSelection(j + 1);
+                        int spinner_txt = userModels.get(position).getPermissionGroupId();
+                        if (userModels != null && userModels.get(position).getPermissionGroupId() != null &&
+                                !userModels.get(position).getPermissionGroupId().equals(""))
+                            for (int j = 0; j < allPermissionAPIResponse.size(); j++) {
+                                if (allPermissionAPIResponse.get(j).getPermissionGroupId().equals(spinner_txt))
+                                    ((TextViewHolder) holder).spinnerEdt.setSelection(j + 1);
+
+                            }
                     }
                 });
     }
