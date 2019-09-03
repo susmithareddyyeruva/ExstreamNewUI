@@ -20,7 +20,7 @@ public class RentRollFragment extends Fragment {
         mContext = getActivity();
 
         // Inflate the layout for this fragment
-       // rootView = inflater.inflate(R.layout.fragment_rent_roll, container, false);
+        rootView = inflater.inflate(R.layout.fragment_rent_roll, container, false);
 
         /* intializing and assigning ID's */
         initViews();

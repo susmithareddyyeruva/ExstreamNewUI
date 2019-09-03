@@ -21,7 +21,7 @@ public class UnitdemographicsFragment extends Fragment {
         mContext = getActivity();
 
         // Inflate the layout for this fragment
-        //rootView = inflater.inflate(R.layout.fragment_unit_demographics, container, false);
+        rootView = inflater.inflate(R.layout.fragment_unit_demographics, container, false);
 
         /* intializing and assigning ID's */
         initViews();

@@ -115,6 +115,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
             }
         });
 
+
         ((TextViewHolder) holder).closeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

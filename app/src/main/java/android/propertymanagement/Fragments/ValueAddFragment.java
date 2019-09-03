@@ -22,7 +22,7 @@ public class ValueAddFragment extends Fragment {
         mContext = getActivity();
 
         // Inflate the layout for this fragment
-      //  rootView = inflater.inflate(R.layout.fragment_value_add, container, false);
+        rootView = inflater.inflate(R.layout.fragment_value_add, container, false);
 
         /* intializing and assigning ID's */
         initViews();
