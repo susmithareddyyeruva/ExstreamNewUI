@@ -284,8 +284,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                         statesList.add(getString(R.string.select_state));
                         for (int i = 0; i < mStatesModel.size(); i++)
                             statesList.add(mStatesModel.get(i).getStateCode());
-                        adapter_state = new ArrayAdapter<String>(mContext,R.layout.spinner_text, statesList);
-                        adapter_state.setDropDownViewResource(R.layout.spinner_text);
+                        adapter_state = new ArrayAdapter<String>(mContext,R.layout.spinner_text_black, statesList);
+                        adapter_state.setDropDownViewResource(R.layout.spinner_text_black);
                         spinnerState.setAdapter(adapter_state);
                         int spinner_txt = getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId();
                         if ( getAccountOwnerDetailsAPIResponse.getAccountOwnerList() != null &&
@@ -500,8 +500,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                         emailText.setText(mResponse.getAccountOwnerList().getEmail());
                         phonenoText.setText(mResponse.getAccountOwnerList().getPhoneNumber());
                         spinnerStateText.setText(mResponse.getAccountOwnerList().getStateCode());
-
-                        Glide.with(mContext).load(mResponse.getAccountOwnerList().getAccountLogo())
+                        String imageStringupdated = mResponse.getAccountOwnerList().getAccountLogo();
+                        Glide.with(mContext).load(imageStringupdated)
                                 .fitCenter()
                                 .error(R.drawable.icon_upload)
                                 .into(uploadImageView);

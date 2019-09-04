@@ -82,7 +82,7 @@ public class GetAccountOwnerDetailsAPIResponse {
         private String zipCode;
         @SerializedName("accountLogo")
         @Expose
-        private Object accountLogo;
+        private String accountLogo;
         @SerializedName("lastModifiedDate")
         @Expose
         private String lastModifiedDate;
@@ -197,11 +197,11 @@ public class GetAccountOwnerDetailsAPIResponse {
             this.zipCode = zipCode;
         }
 
-        public Object getAccountLogo() {
+        public String getAccountLogo() {
             return accountLogo;
         }
 
-        public void setAccountLogo(Object accountLogo) {
+        public void setAccountLogo(String accountLogo) {
             this.accountLogo = accountLogo;
         }
 

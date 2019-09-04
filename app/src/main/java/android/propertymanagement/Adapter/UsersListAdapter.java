@@ -66,7 +66,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
     GetUpdateUserAPIResponse getUpdateUserAPIResponses;
     ArrayAdapter<String> adapter_permission;
-    TextView firstnameText, spinnerText, emailText, phonenoText;
+
     UsersFragment fragment;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels, UsersFragment fragment) {
@@ -80,32 +80,36 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.users_list_adapter, null);
         TextViewHolder vh = new TextViewHolder(view);
-        firstnameText = view.findViewById(R.id.firstnameText);
-        spinnerText = view.findViewById(R.id.spinnerText);
-        emailText = view.findViewById(R.id.emailText);
-        phonenoText = view.findViewById(R.id.phonenoText);
+
         return vh;
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+        ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
+        ((TextViewHolder) holder).spinnerText.setVisibility(View.VISIBLE);
+        ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
+        ((TextViewHolder) holder).phonenoText.setVisibility(View.VISIBLE);
+        ((TextViewHolder) holder).editImageView.setVisibility(View.VISIBLE);
+        ((TextViewHolder) holder).dotImageView.setVisibility(View.VISIBLE);
 
-        firstnameText.setText(userModels.get(position).getFirstName() + " " +
+
+        ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
                 userModels.get(position).getLastName());
-        spinnerText.setText(userModels.get(position).getPermissionGroupName());
-        emailText.setText(userModels.get(position).getEmail());
-        phonenoText.setText(userModels.get(position).getPhoneNumber());
+        ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
+        ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
+        ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
         selecteduserId = userModels.get(position).getUserId();
-        selectedUseremail = userModels.get(position).getEmail();
+     //   selectedUseremail = userModels.get(position).getEmail();
 
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstnameText.setVisibility(View.GONE);
-                emailText.setVisibility(View.GONE);
-                phonenoText.setVisibility(View.GONE);
-                spinnerText.setVisibility(View.GONE);
+                ((TextViewHolder) holder). firstnameText.setVisibility(View.GONE);
+                ((TextViewHolder) holder).emailText.setVisibility(View.GONE);
+                ((TextViewHolder) holder).phonenoText.setVisibility(View.GONE);
+                ((TextViewHolder) holder).spinnerText.setVisibility(View.GONE);
 
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.VISIBLE);
@@ -167,15 +171,16 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).closeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstnameText.setText(userModels.get(position).getFirstName() + " " +
+                ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
                         userModels.get(position).getLastName());
-                spinnerText.setText(userModels.get(position).getPermissionGroupName());
-                emailText.setText(userModels.get(position).getEmail());
-                phonenoText.setText(userModels.get(position).getPhoneNumber());
+                ((TextViewHolder) holder). spinnerText.setText(userModels.get(position).getPermissionGroupName());
+                ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
+                ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
 
-                firstnameText.setVisibility(View.VISIBLE);
-                emailText.setVisibility(View.VISIBLE);
-                phonenoText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).firstnameText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).emailText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).phonenoText.setVisibility(View.VISIBLE);
+                ((TextViewHolder) holder).spinnerText.setVisibility(View.VISIBLE);
 
 
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
@@ -216,10 +221,10 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                                 emailEdt_dialog.setTypeface(ResourcesCompat.getFont(mContext, R.font.oswald_extralight));
                                 password_dialog.setTypeface(ResourcesCompat.getFont(mContext, R.font.oswald_extralight));
                                 confirmpass_dialog.setTypeface(ResourcesCompat.getFont(mContext, R.font.oswald_extralight));
+                                selectedUseremail = userModels.get(position).getEmail();
+                                emailEdt_dialog.setText(selectedUseremail);
+                                // selectedUseremail = emailEdt_dialog.getText().toString();
 
-                               // selectedUseremail = emailEdt_dialog.getText().toString();
-                                passowrdResetStr = password_dialog.getText().toString();
-                                confirmPasswordResetStr = confirmpass_dialog.getText().toString();
 
                                 alertDialog = dialogBuilder.create();
                                 alertDialog.show();
@@ -294,9 +299,9 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         permissionsList.add(mContext.getString(R.string.select_permission));
                         for (int i = 0; i < allPermissionAPIResponse.size(); i++)
                             permissionsList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
-                        adapter_permission = new ArrayAdapter<String>(mContext, R.layout.spinner_text, permissionsList);
+                        adapter_permission = new ArrayAdapter<String>(mContext, R.layout.spinner_text_black, permissionsList);
 
-                        adapter_permission.setDropDownViewResource(R.layout.spinner_text);
+                        adapter_permission.setDropDownViewResource(R.layout.spinner_text_black);
                         ((TextViewHolder) holder).spinnerEdt.setAdapter(adapter_permission);
                         int spinner_txt = userModels.get(position).getPermissionGroupId();
                         if (userModels != null && userModels.get(position).getPermissionGroupId() != null &&
@@ -345,14 +350,13 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         emailStr = getUpdateUserAPIResponses.getEmail();
                         phoneStr = getUpdateUserAPIResponses.getPhoneNumber();
                         spinnerStr = getUpdateUserAPIResponses.getPermissionGroupName();
-                        firstnameText.setVisibility(View.GONE);
-                        emailText.setVisibility(View.GONE);
-                        phonenoText.setVisibility(View.GONE);
-                        spinnerText.setVisibility(View.GONE);
+                        /*firstnameText.setVisibility(View.VISIBLE);
+                        emailText.setVisibility(View.VISIBLE);
+                        phonenoText.setVisibility(View.VISIBLE);
+                        spinnerText.setVisibility(View.VISIBLE);*/
 
                         fragment.getAllAccountUsers();
 
-                        CommonUtil.customToast(String.valueOf(mResponse), mContext);
                         /*firstnameText.setText(firstStr + " " +
                                 lastStr);
                          emailText.setText(emailStr);
@@ -397,7 +401,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
         EditText firstnameEdt, lastnameEdt, emailEdt, phonenoEdt;
         Spinner spinnerEdt;
-        ImageView addImageView, okImageView, closeImageView, dotImageView, editImageView;
+        TextView firstnameText, spinnerText, emailText, phonenoText;
+        ImageView  okImageView, closeImageView, dotImageView, editImageView;
 
 
         public TextViewHolder(@NonNull View itemView) {
@@ -407,11 +412,14 @@ public class UsersListAdapter extends RecyclerView.Adapter {
             emailEdt = itemView.findViewById(R.id.emailEdt);
             phonenoEdt = itemView.findViewById(R.id.phonenoEdt);
             spinnerEdt = itemView.findViewById(R.id.spinnerEdt);
-            addImageView = itemView.findViewById(R.id.addImageView);
             okImageView = itemView.findViewById(R.id.okImageView);
             closeImageView = itemView.findViewById(R.id.closeImageView);
             editImageView = itemView.findViewById(R.id.editImageView);
             dotImageView = itemView.findViewById(R.id.dotImageView);
+            firstnameText = itemView.findViewById(R.id.firstnameText);
+            spinnerText = itemView.findViewById(R.id.spinnerText);
+            emailText = itemView.findViewById(R.id.emailText);
+            phonenoText = itemView.findViewById(R.id.phonenoText);
         }
     }
 
@@ -515,7 +523,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onNext(ResetPasswordAPIResponse mResponse) {
-                        Toast.makeText(mContext, ""+mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "" + mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -529,6 +537,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
      */
 
     private JsonObject addResetPasswordRequest() {
+        passowrdResetStr = password_dialog.getText().toString().trim();
+        confirmPasswordResetStr = confirmpass_dialog.getText().toString().trim();
         ResetPasswordAPIRequestModel model = new ResetPasswordAPIRequestModel();
         model.setEmail(selectedUseremail);
         model.setPassword(passowrdResetStr);

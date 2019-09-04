@@ -22,6 +22,7 @@
                 android:textColor="@color/light_grey"
                 android:fontFamily="@font/helveticaneue"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:text=""
                 android:textSize="@dimen/dimen16sp" />
@@ -72,6 +73,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:textColor="@color/light_grey"
                 android:fontFamily="@font/helveticaneue"
                 android:textSize="@dimen/dimen16sp"/>
@@ -81,7 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/light_grey"
+                android:visibility="gone"
                 android:fontFamily="@font/helveticaneue"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -109,7 +111,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/light_grey"
+                android:visibility="gone"
                 android:fontFamily="@font/helveticaneue"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -132,13 +134,7 @@
                 android:textSize="@dimen/dimen16sp"
                 android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/addImageView"
-                android:layout_width="@dimen/dimen50"
-                android:layout_height="@dimen/dimen50"
-                android:layout_margin="@dimen/dimen5"
-                android:src="@drawable/icon_add"
-                android:visibility="gone" />
+
 
             <ImageView
                 android:id="@+id/okImageView"
@@ -158,12 +154,14 @@
                 android:id="@+id/editImageView"
                 android:layout_width="@dimen/dimen50"
                 android:layout_height="@dimen/dimen50"
+                android:visibility="gone"
                 android:src="@drawable/icon_edit" />
 
             <ImageView
                 android:id="@+id/dotImageView"
                 android:layout_width="@dimen/dimen50"
                 android:layout_height="@dimen/dimen50"
+                android:visibility="gone"
                 android:src="@drawable/icon_kebab" />
 
 
