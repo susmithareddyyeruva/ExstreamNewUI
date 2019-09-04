@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.propertymanagement.Interface.OnBackPressed;
@@ -200,6 +201,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
         if (requestCode == PICK_IMAGE && null != data) {
             // Get the url from data
             Uri selectedImageUri = data.getData();
+            Log.d(TAG,"path :"+selectedImageUri);
+
             if (selectedImageUri != null) {
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = mContext.getContentResolver().query(selectedImageUri, filePathColumn, null, null, null);
@@ -216,7 +219,9 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                 try {
                     imageStream = mContext.getContentResolver().openInputStream(selectedImageUri);
                     final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
                     imageString = encodeImage(selectedImage);
+                    //imageString = encodeImage(bitmap);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -230,14 +235,19 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
      */
     private String encodeImage(Bitmap bm) {
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        //bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String encImage = Base64.encodeToString(b, Base64.DEFAULT);
-        Log.e(TAG,"base64:"+encImage);
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+           // bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] b = baos.toByteArray();
+            String encImage = Base64.encodeToString(b, Base64.NO_WRAP);
+            Log.e(TAG,"base64:"+encImage);
 
-        return encImage;
+            return encImage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     private void getAllStates() {
