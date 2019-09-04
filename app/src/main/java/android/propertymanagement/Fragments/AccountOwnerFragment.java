@@ -274,8 +274,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                         statesList.add(getString(R.string.select_state));
                         for (int i = 0; i < mStatesModel.size(); i++)
                             statesList.add(mStatesModel.get(i).getStateCode());
-                        adapter_state = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, statesList);
-                        adapter_state.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        adapter_state = new ArrayAdapter<String>(mContext,R.layout.spinner_text, statesList);
+                        adapter_state.setDropDownViewResource(R.layout.spinner_text);
                         spinnerState.setAdapter(adapter_state);
                         int spinner_txt = getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId();
                         if ( getAccountOwnerDetailsAPIResponse.getAccountOwnerList() != null &&

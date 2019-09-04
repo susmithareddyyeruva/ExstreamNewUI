@@ -9,6 +9,7 @@ import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountU
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetDeleteUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.ResetPasswordAPIResponse;
 import android.propertymanagement.ModelClass.UserModel;
 import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
@@ -293,9 +294,9 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         permissionsList.add(mContext.getString(R.string.select_permission));
                         for (int i = 0; i < allPermissionAPIResponse.size(); i++)
                             permissionsList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
-                        adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, permissionsList);
+                        adapter_permission = new ArrayAdapter<String>(mContext, R.layout.spinner_text, permissionsList);
 
-                        adapter_permission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        adapter_permission.setDropDownViewResource(R.layout.spinner_text);
                         ((TextViewHolder) holder).spinnerEdt.setAdapter(adapter_permission);
                         int spinner_txt = userModels.get(position).getPermissionGroupId();
                         if (userModels != null && userModels.get(position).getPermissionGroupId() != null &&
@@ -492,7 +493,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         mSubscription = service.putGetResetPasswordByAdmin(object, "bearer" + " " + authorizationToken)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
+                .subscribe(new Subscriber<ResetPasswordAPIResponse>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -513,8 +514,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                     }
 
                     @Override
-                    public void onNext(String mResponse) {
-                        Toast.makeText(mContext, ""+mResponse, Toast.LENGTH_SHORT).show();
+                    public void onNext(ResetPasswordAPIResponse mResponse) {
+                        Toast.makeText(mContext, ""+mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 });

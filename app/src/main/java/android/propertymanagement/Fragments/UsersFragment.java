@@ -4,16 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.propertymanagement.Adapter.UsersListAdapter;
 import android.propertymanagement.ModelClass.RequestModelClasses.GetCreateUserAPIRequestModel;
-import android.propertymanagement.ModelClass.RequestModelClasses.GetUpdateUserAPIRequest;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
-import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
 import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
-import android.propertymanagement.Utils.CommonUtil;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.v4.app.Fragment;
@@ -26,7 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -178,8 +174,8 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
                         permissionsList.add(getString(R.string.select_permission));
                         for (int i = 0; i < allPermissionAPIResponse.size(); i++)
                             permissionsList.add(allPermissionAPIResponse.get(i).getPermissionGroupName());
-                        adapter_permission = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, permissionsList);
-                        adapter_permission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        adapter_permission = new ArrayAdapter<String>(mContext, R.layout.spinner_text, permissionsList);
+                        adapter_permission.setDropDownViewResource(R.layout.spinner_text);
                         spinnerEdt.setAdapter(adapter_permission);
                         /*if (getCreateUserAPIResponse != null && getCreateUserAPIResponse.getPermissionGroupId() != null &&
                                 !getCreateUserAPIResponse.getPermissionGroupId().equals(""))

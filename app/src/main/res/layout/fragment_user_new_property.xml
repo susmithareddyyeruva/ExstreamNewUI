@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
-                    ></Spinner>
+                    />
 
                 <android.propertymanagement.Utils.CommonEditText
                     android:id="@+id/emailEdt"
