@@ -26,8 +26,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen10"
                 android:hint="@string/company"
+                android:backgroundTint="@color/black"
+                android:fontFamily="@font/oswald_extralight"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/dimen16sp"
-                android:textStyle="bold" />
+
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -54,7 +62,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
