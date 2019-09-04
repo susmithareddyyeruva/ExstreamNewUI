@@ -250,6 +250,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                             case R.id.active_userText:
                                 getactivateUser();
                                 break;
+
                         }
                         return false;
                     }
