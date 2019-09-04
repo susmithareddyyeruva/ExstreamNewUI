@@ -20,5 +20,6 @@
     <color name="light_black">#979494</color>
     <color name="light_grey_color">#606060</color>
     <color name="black">#000000</color>
+    <color name="popup_background_color">#dbdbdb</color>
 
 </resources>
