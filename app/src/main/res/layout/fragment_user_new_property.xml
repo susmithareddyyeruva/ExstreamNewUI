@@ -27,7 +27,10 @@
                 android:layout_marginLeft="@dimen/dimen10"
                 android:hint="@string/company"
                 android:textSize="@dimen/dimen16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:backgroundTint="@color/light_grey"
+                android:textColorHint="@color/light_grey"
+                android:drawableRight="@drawable/icon_lookup"/>
         </LinearLayout>
 
         <LinearLayout
@@ -50,11 +53,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/firstname"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -67,11 +70,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/lastname"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <android.propertymanagement.Utils.CommonEditText
@@ -82,19 +85,20 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/title"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <Spinner
                     android:id="@+id/sipnnerRoleOwnerShip"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen10"
-                    android:layout_weight="1"></Spinner>
+                    android:layout_weight="1"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    ></Spinner>
 
                 <android.propertymanagement.Utils.CommonEditText
                     android:id="@+id/emailEdt"
@@ -108,7 +112,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -121,11 +125,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/mobile"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <ImageView
@@ -155,7 +159,8 @@
                 android:layout_marginLeft="@dimen/dimen10"
                 android:hint="@string/company"
                 android:textSize="@dimen/dimen16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableRight="@drawable/icon_lookup"/>
         </LinearLayout>
 
         <LinearLayout
@@ -178,11 +183,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/firstname"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -195,11 +200,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/lastname"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <android.propertymanagement.Utils.CommonEditText
@@ -210,18 +215,18 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/title"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <Spinner
                     android:id="@+id/sipnnerPM"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen10"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_weight="1"></Spinner>
 
                 <android.propertymanagement.Utils.CommonEditText
@@ -236,7 +241,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -249,11 +254,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/mobile"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <ImageView
@@ -301,11 +306,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/firstname"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -318,11 +323,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/lastname"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <android.propertymanagement.Utils.CommonEditText
@@ -333,22 +338,22 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/title"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <Spinner
                     android:id="@+id/sipnnerOtherEdt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen10"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_weight="1"></Spinner>
 
                 <android.propertymanagement.Utils.CommonEditText
-                    android:id="@+id/emailEdt"
+                    android:id="@+id/emailOtherEdt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -359,7 +364,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp"
 
                     />
@@ -372,11 +377,11 @@
                     android:backgroundTint="@color/black"
                     android:fontFamily="@font/oswald_extralight"
                     android:hint="@string/mobile"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text=""
-                    android:textColorHint="@color/light_grey_color"
+                    android:textColorHint="@color/light_grey"
                     android:textSize="@dimen/dimen16sp" />
 
                 <ImageView
