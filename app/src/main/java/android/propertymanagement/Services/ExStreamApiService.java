@@ -11,6 +11,7 @@ import android.propertymanagement.ModelClass.ResponseModelClasses.GetDeleteUserA
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.LoginPostAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.ResetPasswordAPIResponse;
 
 import com.google.gson.JsonObject;
 
@@ -81,7 +82,7 @@ public interface ExStreamApiService {
      * GetResetPasswordByAdmin
      * */
     @PUT(APIConstantURL.GetResetPasswordByAdmin)
-    Observable<String> putGetResetPasswordByAdmin(@Body JsonObject data, @Header("Authorization") String Authorization);
+    Observable<ResetPasswordAPIResponse> putGetResetPasswordByAdmin(@Body JsonObject data, @Header("Authorization") String Authorization);
 
 
     /*
