@@ -66,7 +66,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
     GetUpdateUserAPIResponse getUpdateUserAPIResponses;
     ArrayAdapter<String> adapter_permission;
-    Boolean isActive;
+    Boolean isActive_selected,isActive;
     UsersFragment fragment;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels, UsersFragment fragment) {
@@ -100,8 +100,18 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
-        selecteduserId = userModels.get(position).getUserId();
+     //   selecteduserId = userModels.get(position).getUserId();
         isActive = userModels.get(position).getIsActive();
+        if(isActive.equals(true)){
+            ((TextViewHolder) holder).editImageView.setClickable(true);
+            ((TextViewHolder) holder).editImageView.setImageResource(R.drawable.icon_edit);
+        }else if(isActive.equals(false)){
+            ((TextViewHolder) holder).editImageView.setClickable(false);
+            ((TextViewHolder) holder).editImageView.setEnabled(false);
+            ((TextViewHolder) holder).editImageView.setImageResource(R.drawable.edit_disable);
+        }
+
+
      //   selectedUseremail = userModels.get(position).getEmail();
 
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +166,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                 int spinner_selected_id = allPermissionAPIResponse.get(((TextViewHolder) holder)
                         .spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId();
-
+                selecteduserId = userModels.get(position).getUserId();
                 getUpdateUsers();
 
 
@@ -204,8 +214,18 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 PopupMenu popup = new PopupMenu(mContext, ((TextViewHolder) holder).dotImageView);
 
                 popup.inflate(R.menu.popup_menu);
+                isActive_selected = userModels.get(position).getIsActive();
+                if(isActive_selected.equals(false)){
+                    popup.getMenu().findItem(R.id.active_userText).setVisible(true);
+                    popup.getMenu().findItem(R.id.deactive_userText).setVisible(false);
+                    popup.getMenu().findItem(R.id.reset_pwdText).setVisible(false);
 
-                if(isActive.equals(true))
+                }else if(isActive_selected.equals(true)){
+                    popup.getMenu().findItem(R.id.active_userText).setVisible(false);
+                    popup.getMenu().findItem(R.id.deactive_userText).setVisible(true);
+                    popup.getMenu().findItem(R.id.reset_pwdText).setVisible(true);
+
+                }
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -253,10 +273,12 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                                 break;
                             case R.id.deactive_userText:
+                                selecteduserId = userModels.get(position).getUserId();
                                 getDeactivateUser();
                                 break;
 
                             case R.id.active_userText:
+                                selecteduserId = userModels.get(position).getUserId();
                                 getactivateUser();
                                 break;
 
@@ -454,7 +476,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onNext(GetDeleteUserAPIResponse mResponse) {
-
+                        fragment.getAllAccountUsers();
                         CommonUtil.customToast(mResponse.getMessage(), mContext);
 
                     }
@@ -490,7 +512,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onNext(GetActiveUserAPIResponse mResponse) {
-
+                        fragment.getAllAccountUsers();
                         CommonUtil.customToast(mResponse.getMessage(), mContext);
 
                     }
@@ -526,6 +548,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                     @Override
                     public void onNext(ResetPasswordAPIResponse mResponse) {
+                        fragment.getAllAccountUsers();
                         Toast.makeText(mContext, "" + mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 

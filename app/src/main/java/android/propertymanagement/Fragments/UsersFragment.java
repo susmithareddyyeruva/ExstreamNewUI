@@ -11,6 +11,7 @@ import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
 import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
+import android.propertymanagement.Utils.CommonUtil;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.v4.app.Fragment;
@@ -132,6 +133,12 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
                     @Override
                     public void onNext(GetCreateUserAPIResponse mResponse) {
+                        CommonUtil.customToast("Account user created successfully", mContext);
+                        firstnameEdt.setText("");
+                        lastnameEdt.setText("");
+                        spinnerEdt.setSelection(0);
+                        emailEdt.setText("");
+                        phonenoEdt.setText("");
 
                         getAllAccountUsers();
 
@@ -236,12 +243,13 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
      * @return
      */
     private JsonObject addCreateUserRequest() {
+        int spinner_selected = allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId() ;
         GetCreateUserAPIRequestModel model = new GetCreateUserAPIRequestModel();
         model.setFirstName(firstnameEdt.getText().toString());
         model.setLastName(lastnameEdt.getText().toString());
         model.setEmail(emailEdt.getText().toString());
         model.setPhoneNumber(phonenoEdt.getText().toString());
-        model.setPermissionGroupId(allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId());
+        model.setPermissionGroupId(spinner_selected);
         model.setPassword("Admin123");
         model.setActive(true);
         model.setAllProperties(true);

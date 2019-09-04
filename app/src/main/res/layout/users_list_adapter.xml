@@ -129,6 +129,7 @@
                 android:hint="@string/phone"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:maxLength="13"
                 android:singleLine="true"
                 android:text=""
                 android:textSize="@dimen/dimen16sp"
@@ -140,6 +141,7 @@
                 android:id="@+id/okImageView"
                 android:layout_width="@dimen/dimen50"
                 android:layout_height="@dimen/dimen50"
+                android:padding="@dimen/dimen5"
                 android:src="@drawable/icon_ok"
                 android:visibility="gone" />
 
@@ -147,6 +149,7 @@
                 android:id="@+id/closeImageView"
                 android:layout_width="@dimen/dimen50"
                 android:layout_height="@dimen/dimen50"
+                android:padding="@dimen/dimen5"
                 android:src="@drawable/icon_deleteclosedot"
                 android:visibility="gone" />
 
@@ -154,8 +157,9 @@
                 android:id="@+id/editImageView"
                 android:layout_width="@dimen/dimen50"
                 android:layout_height="@dimen/dimen50"
+                android:padding="@dimen/dimen5"
                 android:visibility="gone"
-                android:src="@drawable/icon_edit" />
+                android:clickable="false" />
 
             <ImageView
                 android:id="@+id/dotImageView"
@@ -163,6 +167,12 @@
                 android:layout_height="@dimen/dimen50"
                 android:visibility="gone"
                 android:src="@drawable/icon_kebab" />
+          <!--  <ImageView
+                android:id="@+id/edit_disableImageView"
+                android:layout_width="@dimen/dimen50"
+                android:layout_height="@dimen/dimen50"
+                android:visibility="gone"
+                android:src="@drawable/edit_disable" />-->
 
 
         </LinearLayout>
