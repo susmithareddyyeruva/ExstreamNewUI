@@ -66,7 +66,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
     GetUpdateUserAPIResponse getUpdateUserAPIResponses;
     ArrayAdapter<String> adapter_permission;
-
+    Boolean isActive;
     UsersFragment fragment;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels, UsersFragment fragment) {
@@ -101,6 +101,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
         selecteduserId = userModels.get(position).getUserId();
+        isActive = userModels.get(position).getIsActive();
      //   selectedUseremail = userModels.get(position).getEmail();
 
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +204,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 PopupMenu popup = new PopupMenu(mContext, ((TextViewHolder) holder).dotImageView);
 
                 popup.inflate(R.menu.popup_menu);
+
+                if(isActive.equals(true))
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -546,6 +549,8 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         return new Gson().toJsonTree(model).getAsJsonObject();
 
     }
+
+
 
 
     /**
