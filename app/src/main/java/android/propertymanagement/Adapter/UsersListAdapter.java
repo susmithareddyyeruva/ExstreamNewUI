@@ -3,8 +3,11 @@ package android.propertymanagement.Adapter;
 import android.content.Context;
 import android.propertymanagement.Fragments.UsersFragment;
 import android.propertymanagement.ModelClass.RequestModelClasses.GetUpdateUserAPIRequest;
+import android.propertymanagement.ModelClass.RequestModelClasses.ResetPasswordAPIRequestModel;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetActiveUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetDeleteUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.ModelClass.UserModel;
 import android.propertymanagement.R;
@@ -15,6 +18,8 @@ import android.propertymanagement.Utils.CommonUtil;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -48,15 +54,18 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllAccountUsersAPIResponse> userModels;
     private OnCartChangedListener onCartChangedListener;
     String spinnerString;
-    private String firstStr, lastStr, emailStr, phoneStr, spinnerStr,editfirstnameStr,
-            editlastnameStr,editemailstr,editphnoStr,selectedUseremail;
-    int spinnerSelectedId,selecteduserId;
+    private String firstStr, lastStr, emailStr, phoneStr, spinnerStr, editfirstnameStr,
+            editlastnameStr, editemailstr, editphnoStr, selectedUseremail, passowrdResetStr, confirmPasswordResetStr;
+    int spinnerSelectedId, selecteduserId;
     private String authorizationToken;
     private Subscription mSubscription;
+    EditText emailEdt_dialog, password_dialog, confirmpass_dialog;
+    Button cancelBtn, submitBtn;
+    private AlertDialog alertDialog;
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
     GetUpdateUserAPIResponse getUpdateUserAPIResponses;
     ArrayAdapter<String> adapter_permission;
-    TextView firstnameText,spinnerText, emailText, phonenoText;
+    TextView firstnameText, spinnerText, emailText, phonenoText;
     UsersFragment fragment;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels, UsersFragment fragment) {
@@ -127,8 +136,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                 editphnoStr = ((TextViewHolder) holder).phonenoEdt.getText().toString();
 
 
-
-
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.GONE);
                 ((TextViewHolder) holder).emailEdt.setVisibility(View.GONE);
@@ -145,10 +152,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         .spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId();
 
                 getUpdateUsers();
-
-
-
-
 
 
                 onCartChangedListener.setCartClickListener("edit", position,
@@ -200,10 +203,52 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.reset_pwdText:
-                                Toast.makeText(mContext, "reset password", Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+                                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                                View dialogView = inflater.inflate(R.layout.dialog_rest_password, null);
+                                dialogBuilder.setView(dialogView);
+                                emailEdt_dialog = dialogView.findViewById(R.id.emailEdt_dialog);
+                                password_dialog = dialogView.findViewById(R.id.password_dialog);
+                                confirmpass_dialog = dialogView.findViewById(R.id.confirmpass_dialog);
+                                cancelBtn = dialogView.findViewById(R.id.cancelBtn);
+                                submitBtn = dialogView.findViewById(R.id.submitBtn);
+                                emailEdt_dialog.setTypeface(ResourcesCompat.getFont(mContext, R.font.oswald_extralight));
+                                password_dialog.setTypeface(ResourcesCompat.getFont(mContext, R.font.oswald_extralight));
+                                confirmpass_dialog.setTypeface(ResourcesCompat.getFont(mContext, R.font.oswald_extralight));
+
+                               // selectedUseremail = emailEdt_dialog.getText().toString();
+                                passowrdResetStr = password_dialog.getText().toString();
+                                confirmPasswordResetStr = confirmpass_dialog.getText().toString();
+
+                                alertDialog = dialogBuilder.create();
+                                alertDialog.show();
+                                /**
+                                 * @param OnClickListner
+                                 */
+                                submitBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        getResetPassword();
+                                        alertDialog.dismiss();
+
+                                    }
+                                });
+
+                                cancelBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+
                                 break;
                             case R.id.deactive_userText:
-                                Toast.makeText(mContext, "DEACTIVATE USER", Toast.LENGTH_SHORT).show();
+                                getDeactivateUser();
+                                break;
+
+                            case R.id.active_userText:
+                                getactivateUser();
                                 break;
                         }
                         return false;
@@ -298,14 +343,14 @@ public class UsersListAdapter extends RecyclerView.Adapter {
                         emailStr = getUpdateUserAPIResponses.getEmail();
                         phoneStr = getUpdateUserAPIResponses.getPhoneNumber();
                         spinnerStr = getUpdateUserAPIResponses.getPermissionGroupName();
-                        firstnameText.setVisibility(View.VISIBLE);
-                        emailText.setVisibility(View.VISIBLE);
-                        phonenoText.setVisibility(View.VISIBLE);
-                        spinnerText.setVisibility(View.VISIBLE);
+                        firstnameText.setVisibility(View.GONE);
+                        emailText.setVisibility(View.GONE);
+                        phonenoText.setVisibility(View.GONE);
+                        spinnerText.setVisibility(View.GONE);
 
                         fragment.getAllAccountUsers();
 
-                        CommonUtil.customToast(mResponse.toString(), mContext);
+                        CommonUtil.customToast(String.valueOf(mResponse), mContext);
                         /*firstnameText.setText(firstStr + " " +
                                 lastStr);
                          emailText.setText(emailStr);
@@ -367,6 +412,129 @@ public class UsersListAdapter extends RecyclerView.Adapter {
             dotImageView = itemView.findViewById(R.id.dotImageView);
         }
     }
+
+    private void getDeactivateUser() {
+        authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.GetDeleteUser(APIConstantURL.GetDeleteUser + selecteduserId, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetDeleteUserAPIResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetDeleteUserAPIResponse mResponse) {
+
+                        CommonUtil.customToast(mResponse.getMessage(), mContext);
+
+                    }
+                });
+
+    }
+
+    private void getactivateUser() {
+        authorizationToken = SharedPrefsData.getString(mContext, Constants.access_token, Constants.PREF_NAME);
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.GetActiveUser(APIConstantURL.GetActiveUser + selecteduserId, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetActiveUserAPIResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetActiveUserAPIResponse mResponse) {
+
+                        CommonUtil.customToast(mResponse.getMessage(), mContext);
+
+                    }
+                });
+
+    }
+
+    private void getResetPassword() {
+        JsonObject object = addResetPasswordRequest();
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.putGetResetPasswordByAdmin(object, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(String mResponse) {
+                        Toast.makeText(mContext, ""+mResponse, Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+    }
+
+
+    /**
+     * Json Object of addUpdateUserRequest
+     *
+     * @return
+     */
+
+    private JsonObject addResetPasswordRequest() {
+        ResetPasswordAPIRequestModel model = new ResetPasswordAPIRequestModel();
+        model.setEmail(selectedUseremail);
+        model.setPassword(passowrdResetStr);
+        model.setConfirmPassword(confirmPasswordResetStr);
+        return new Gson().toJsonTree(model).getAsJsonObject();
+
+    }
+
 
     /**
      * Container Activity must implement this interface

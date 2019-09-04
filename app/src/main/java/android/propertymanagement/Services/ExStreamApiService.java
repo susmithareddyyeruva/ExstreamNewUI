@@ -2,10 +2,12 @@ package android.propertymanagement.Services;
 
 
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAccountOwnerDetailsAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetActiveUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissionAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllStatesAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetDeleteUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.LoginPostAPIResponse;
@@ -15,6 +17,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -73,6 +76,14 @@ public interface ExStreamApiService {
     Observable<GetUpdateUserAPIResponse> putUpdateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
 
 
+
+    /*
+     * GetResetPasswordByAdmin
+     * */
+    @PUT(APIConstantURL.GetResetPasswordByAdmin)
+    Observable<String> putGetResetPasswordByAdmin(@Body JsonObject data, @Header("Authorization") String Authorization);
+
+
     /*
      * GetAllAccountUsers
      * */
@@ -80,7 +91,7 @@ public interface ExStreamApiService {
     Observable<ArrayList<GetAllAccountUsersAPIResponse>> GetAllAccountUsers(@Url String url, @Header("Authorization") String Authorization);
 
 
-    // Login
+    // GetCreateUser
     @POST(APIConstantURL.GetCreateUser)
     Observable<GetCreateUserAPIResponse> GetCreateUser(@Body JsonObject data, @Header("Authorization") String Authorization);
 
@@ -88,8 +99,15 @@ public interface ExStreamApiService {
     /*
      * GetDeleteUser
      * */
-    @GET
-    Observable<ArrayList<GetAllAccountUsersAPIResponse>> GetDeleteUser(@Url String url, @Header("Authorization") String Authorization);
+    @DELETE
+    Observable<GetDeleteUserAPIResponse> GetDeleteUser(@Url String url, @Header("Authorization") String Authorization);
+
+
+    /*
+     * GetActiveUser
+     * */
+    @DELETE
+    Observable<GetActiveUserAPIResponse> GetActiveUser(@Url String url, @Header("Authorization") String Authorization);
 
 
 }

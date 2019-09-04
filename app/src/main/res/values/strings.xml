@@ -136,4 +136,8 @@
     <string name="logout">Logout</string>
     <string name="select_permission">Select Permission</string>
     <string name="my_profile">My Profile</string>
+    <string name="email_reset_str">Enter Your Registered Email</string>
+    <string name="password_reset_str">Enter Your Password</string>
+    <string name="confirm_pass_reset_str">Enter Your Confirm Password</string>
+    <string name="active_user">ACTIVATE USER</string>
 </resources>
