@@ -31,6 +31,9 @@ public interface APIConstantURL {
     //GetAllAccountUsers
     String GetAllAccountUsers = BASE_URL + "api/User/GetAllAccountUsers";
 
+    //GetAllPropertys
+    String GetAllPropertys = BASE_URL + "api/Property/GetPropertySetupProgress";
+
     //GetCreateUser
     String GetCreateUser = BASE_URL + "api/User/CreateUser";
 

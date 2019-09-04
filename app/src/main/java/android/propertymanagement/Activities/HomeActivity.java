@@ -4,15 +4,24 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.propertymanagement.Adapter.UsersListAdapter;
+import android.propertymanagement.Fragments.UsersFragment;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetPropertySetupResponce;
 import android.propertymanagement.R;
+import android.propertymanagement.Services.APIConstantURL;
+import android.propertymanagement.Services.ExStreamApiService;
+import android.propertymanagement.Services.ServiceFactory;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
@@ -24,19 +33,36 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static android.propertymanagement.Utils.Constants.PREF_NAME;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    public static final String TAG = HomeActivity.class.getSimpleName();
 
     private ImageView edit_info, properties_icon;
     private AlertDialog alertDialog, alert;
     TextView logout_dialog,username_dialog,myprofile_dialog,title_text;
     String userName,user;
+    private String authorizationToken;
+    private Subscription mSubscription;
     private TextView about_tv, terms_of_use_tv, privacy_policy_tv;
+
+   private ExpandableListView lst_propertys;
+   private ExpandablePropertyAdapter lst_propertyAdapter;
 
 
     @Override
@@ -71,6 +97,7 @@ public class HomeActivity extends AppCompatActivity
         initViews();
 
         setViews();
+        getProperty();
     }
 
     private void initViews() {
@@ -79,6 +106,7 @@ public class HomeActivity extends AppCompatActivity
         about_tv = findViewById(R.id.about_tv);
         terms_of_use_tv = findViewById(R.id.terms_of_use_tv);
         privacy_policy_tv = findViewById(R.id.privacy_policy_tv);
+        lst_propertys = findViewById(R.id.lst_property);
     }
 
     private void setViews() {
@@ -241,6 +269,79 @@ public class HomeActivity extends AppCompatActivity
         alertDialog = dialogBuilder.create();
         alertDialog.show();
     }
+    public void getProperty() {
+        authorizationToken = SharedPrefsData.getString(HomeActivity.this, Constants.access_token, Constants.PREF_NAME);
+        ExStreamApiService service = ServiceFactory.createRetrofitService(HomeActivity.this, ExStreamApiService.class);
+        mSubscription = service.GetAllProperty(APIConstantURL.GetAllPropertys, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ArrayList<GetPropertySetupResponce>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ArrayList<GetPropertySetupResponce> mResponse) {
+
+                        Log.e(TAG, "-- analysis ---> getproperty responce --->"+mResponse.toString());
+                        lst_propertyAdapter =new ExpandablePropertyAdapter(mResponse,HomeActivity.this);
+
+                        lst_propertys.setAdapter(lst_propertyAdapter);
+                        lst_propertys.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+                            @Override
+                            public void onGroupExpand(int groupPosition) {
+                              /*  Toast.makeText(getApplicationContext(),
+                                        mResponse.get(groupPosition) + " List Expanded.",
+                                        Toast.LENGTH_SHORT).show();*/
+                            }
+                        });
+
+                        lst_propertys.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+
+                            @Override
+                            public void onGroupCollapse(int groupPosition) {
+                               /* Toast.makeText(getApplicationContext(),
+                                        expandableListTitle.get(groupPosition) + " List Collapsed.",
+                                        Toast.LENGTH_SHORT).show();*/
+
+                            }
+                        });
+
+                        lst_propertys.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                            @Override
+                            public boolean onChildClick(ExpandableListView parent, View v,
+                                                        int groupPosition, int childPosition, long id) {
+                              /*  Toast.makeText(
+                                        getApplicationContext(),
+                                        expandableListTitle.get(groupPosition)
+                                                + " -> "
+                                                + expandableListDetail.get(
+                                                expandableListTitle.get(groupPosition)).get(
+                                                childPosition), Toast.LENGTH_SHORT
+                                ).show();*/
+                                return false;
+                            }
+                        });
+
+
+                    }
+                });
+    }
 
 }

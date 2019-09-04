@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <RadioButton
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:id="@+id/rd_info"
+            android:text="property Information"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/rd_property"
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:text="property ValueAdd"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/rd_unit"
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:text="unit Demographics"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/rd_property_signage"
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:text="Property Signage"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <RadioButton
+
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:id="@+id/rd_users"
+            android:text="property Users"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/rd_rent_"
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:text="rent Roll Setup"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/rd_property_walk"
+            android:fontFamily="@font/oswald_extralight"
+            android:buttonTint="@color/light_grey_color"
+            android:text="property Walk"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</LinearLayout>

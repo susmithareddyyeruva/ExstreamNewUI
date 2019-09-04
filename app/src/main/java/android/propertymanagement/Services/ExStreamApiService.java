@@ -8,6 +8,7 @@ import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissi
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllStatesAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetDeleteUserAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetPropertySetupResponce;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.LoginPostAPIResponse;
@@ -109,6 +110,14 @@ public interface ExStreamApiService {
      * */
     @DELETE
     Observable<GetActiveUserAPIResponse> GetActiveUser(@Url String url, @Header("Authorization") String Authorization);
+
+    /*
+     * GetAllProjects
+     * */
+    @GET
+    Observable<ArrayList<GetPropertySetupResponce>> GetAllProperty(@Url String url, @Header("Authorization") String Authorization);
+
+
 
 
 }
