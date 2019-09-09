@@ -17,13 +17,16 @@ import android.propertymanagement.Utils.SharedPrefsData;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -97,9 +100,94 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
             @Override
             public void onClick(View v) {
 
-                getCreateUser();
+                if (validations()){
+                    getCreateUser();
+                    getAllAccountUsers();
+                }
             }
         });
+
+
+    }
+
+    /**
+     * Validations for user name and password
+     *
+     * @return
+     */
+    public boolean validations() {
+        if (TextUtils.isEmpty(firstnameEdt.getText().toString())) {
+            firstnameEdt.setError(getString(R.string.err_fisrt_name));
+            firstnameEdt.requestFocus();
+            firstnameEdt.setEnabled(true);
+            return false;
+        } else if (TextUtils.isEmpty(lastnameEdt.getText().toString())) {
+            lastnameEdt.setError(getString(R.string.err_last_name));
+            lastnameEdt.requestFocus();
+            lastnameEdt.setEnabled(true);
+            return false;
+        } else if (isEmptySpinner(spinnerEdt)) {
+            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(spinnerEdt.getWindowToken(), 0);
+            Toast.makeText(mContext, getString(R.string.err_select_state), Toast.LENGTH_SHORT).show();
+            spinnerEdt.requestFocusFromTouch();
+            spinnerEdt.setEnabled(true);
+
+            return false;
+        }
+        if (TextUtils.isEmpty(emailEdt.getText().toString())) {
+            emailEdt.setError(getString(R.string.err_please_enter_email));
+            emailEdt.requestFocus();
+            emailEdt.setEnabled(true);
+            return false;
+        } else if (!isValidEmail(emailEdt.getText().toString())) {
+            emailEdt.setError(getString(R.string.err_valid_emailid));
+            emailEdt.requestFocus();
+            emailEdt.setEnabled(true);
+            return false;
+        } else if (TextUtils.isEmpty(phonenoEdt.getText().toString().trim())) {
+            phonenoEdt.setError(getString(R.string.err_phno));
+            phonenoEdt.setEnabled(true);
+            phonenoEdt.requestFocus();
+            return false;
+        } else if (!isValidPhone() || phonenoEdt.getText().toString().startsWith("0")) {
+            phonenoEdt.setError(getString(R.string.err_please_enter_valid_mobile_number));
+            phonenoEdt.requestFocusFromTouch();
+            phonenoEdt.setEnabled(true);
+
+        }
+        return true;
+    }
+
+    // to validate phone number
+    private boolean isValidPhone() {
+        String target = phonenoEdt.getText().toString().trim();
+        if (target.length()!=10) {
+            return false;
+        } else {
+            return android.util.Patterns.PHONE.matcher(target).matches();
+        }
+    }
+
+
+    // to validate EmptySpinner
+    public static boolean isEmptySpinner(final Spinner inputSpinner) {
+        if (null == inputSpinner) return true;
+        if (inputSpinner.getSelectedItemPosition() == -1 || inputSpinner.getSelectedItemPosition() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Valid email or not
+     *
+     * @param email
+     * @return
+     */
+    public static boolean isValidEmail(final String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 
 
     }
@@ -224,9 +312,9 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
                     @Override
                     public void onNext(ArrayList<GetAllAccountUsersAPIResponse> mResponse) {
-                        listResults =  new ArrayList<>();
+                        listResults = new ArrayList<>();
                         listResults = mResponse;
-                        usersListAdapter = new UsersListAdapter(mContext, listResults,UsersFragment.this);
+                        usersListAdapter = new UsersListAdapter(mContext, listResults, UsersFragment.this);
                         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
                         recyclerViewUsers.setAdapter(usersListAdapter);
                         usersListAdapter.setOnCartChangedListener(UsersFragment.this);
@@ -243,7 +331,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
      * @return
      */
     private JsonObject addCreateUserRequest() {
-        int spinner_selected = allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId() ;
+        int spinner_selected = allPermissionAPIResponse.get(spinnerEdt.getSelectedItemPosition() - 1).getPermissionGroupId();
         GetCreateUserAPIRequestModel model = new GetCreateUserAPIRequestModel();
         model.setFirstName(firstnameEdt.getText().toString());
         model.setLastName(lastnameEdt.getText().toString());
@@ -261,7 +349,7 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
 
     @Override
     public void setCartClickListener(String status, int position, String firstNameStr, String lastNameStr,
-                                     String emailIdStr, String phonenoStr,int spinnerSelectId ) {
+                                     String emailIdStr, String phonenoStr, int spinnerSelectId) {
 
       /*  firstStr = firstNameStr;
         lastStr = lastNameStr;
@@ -276,9 +364,6 @@ public class UsersFragment extends Fragment implements UsersListAdapter.OnCartCh
             }
         }*/
     }
-
-
-
 
 
 }

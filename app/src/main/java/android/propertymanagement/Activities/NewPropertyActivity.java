@@ -17,6 +17,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,8 @@ public class NewPropertyActivity extends BaseActivity {
     private TabLayout tabs;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
+    private TextView cmpny_stp;
+    private ImageView back_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +44,33 @@ public class NewPropertyActivity extends BaseActivity {
 
     private void initViews() {
         viewPager = findViewById(R.id.viewpager);
+        cmpny_stp = findViewById(R.id.cmpny_stp);
+        back_image = findViewById(R.id.back_image);
 
         // load the fragments when the tab is selected or page is swiped
         setupViewPager(viewPager);
         viewPager.setOffscreenPageLimit(7);
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        cmpny_stp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewPropertyActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+        back_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewPropertyActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     /**

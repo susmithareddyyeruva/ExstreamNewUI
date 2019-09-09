@@ -140,4 +140,16 @@
     <string name="password_reset_str">Enter Your Password</string>
     <string name="confirm_pass_reset_str">Enter Your Confirm Password</string>
     <string name="active_user">ACTIVATE USER</string>
+    <string name="err_fisrt_name">First Name is required</string>
+    <string name="err_last_name">Last Name is required</string>
+    <string name="err_company_name">Company Name is required</string>
+    <string name="err_mailing_name">Mailing Address is required</string>
+    <string name="err_suite_unit_name">Suite,Unit is required</string>
+    <string name="err_zip">Zip is required</string>
+    <string name="err_city_name">City Name is required</string>
+    <string name="err_select_state">Select State</string>
+    <string name="err_emailid">Email is required</string>
+    <string name="err_phno">Phone Number is required</string>
+    <string name="err_please_enter_valid_mobile_number">Please Enter 10 Digit Phone Number It is not a valid phone number.</string>
+    <string name="err_valid_emailid">email is invalid</string>
 </resources>

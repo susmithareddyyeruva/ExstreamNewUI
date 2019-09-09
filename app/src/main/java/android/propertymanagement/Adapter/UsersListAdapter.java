@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,7 +67,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     ArrayList<GetAllPermissionAPIResponse> allPermissionAPIResponse;
     GetUpdateUserAPIResponse getUpdateUserAPIResponses;
     ArrayAdapter<String> adapter_permission;
-    Boolean isActive_selected,isActive;
+    Boolean isActive_selected, isActive;
     UsersFragment fragment;
 
     public UsersListAdapter(Context mContext, ArrayList<GetAllAccountUsersAPIResponse> userModels, UsersFragment fragment) {
@@ -100,28 +101,33 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
         ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
         ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
-     //   selecteduserId = userModels.get(position).getUserId();
+        //   selecteduserId = userModels.get(position).getUserId();
         isActive = userModels.get(position).getIsActive();
-        if(isActive.equals(true)){
+        if (isActive.equals(true)) {
             ((TextViewHolder) holder).editImageView.setClickable(true);
             ((TextViewHolder) holder).editImageView.setImageResource(R.drawable.icon_edit);
-        }else if(isActive.equals(false)){
+        } else if (isActive.equals(false)) {
             ((TextViewHolder) holder).editImageView.setClickable(false);
             ((TextViewHolder) holder).editImageView.setEnabled(false);
             ((TextViewHolder) holder).editImageView.setImageResource(R.drawable.edit_disable);
         }
 
 
-     //   selectedUseremail = userModels.get(position).getEmail();
+        //   selectedUseremail = userModels.get(position).getEmail();
 
         ((TextViewHolder) holder).editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TextViewHolder) holder). firstnameText.setVisibility(View.GONE);
+                ((TextViewHolder) holder).firstnameText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).emailText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).phonenoText.setVisibility(View.GONE);
                 ((TextViewHolder) holder).spinnerText.setVisibility(View.GONE);
 
+                if (!TextUtils.isEmpty(userModels.get(position).getFirstName())) {
+                    ((TextViewHolder) holder).firstnameEdt.setText(userModels.get(position).getFirstName());
+                } else {
+                    ((TextViewHolder) holder).firstnameEdt.setError(mContext.getString(R.string.err_fisrt_name));
+                }
                 ((TextViewHolder) holder).firstnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).lastnameEdt.setVisibility(View.VISIBLE);
                 ((TextViewHolder) holder).emailEdt.setVisibility(View.VISIBLE);
@@ -184,7 +190,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 ((TextViewHolder) holder).firstnameText.setText(userModels.get(position).getFirstName() + " " +
                         userModels.get(position).getLastName());
-                ((TextViewHolder) holder). spinnerText.setText(userModels.get(position).getPermissionGroupName());
+                ((TextViewHolder) holder).spinnerText.setText(userModels.get(position).getPermissionGroupName());
                 ((TextViewHolder) holder).emailText.setText(userModels.get(position).getEmail());
                 ((TextViewHolder) holder).phonenoText.setText(userModels.get(position).getPhoneNumber());
 
@@ -215,12 +221,12 @@ public class UsersListAdapter extends RecyclerView.Adapter {
 
                 popup.inflate(R.menu.popup_menu);
                 isActive_selected = userModels.get(position).getIsActive();
-                if(isActive_selected.equals(false)){
+                if (isActive_selected.equals(false)) {
                     popup.getMenu().findItem(R.id.active_userText).setVisible(true);
                     popup.getMenu().findItem(R.id.deactive_userText).setVisible(false);
                     popup.getMenu().findItem(R.id.reset_pwdText).setVisible(false);
 
-                }else if(isActive_selected.equals(true)){
+                } else if (isActive_selected.equals(true)) {
                     popup.getMenu().findItem(R.id.active_userText).setVisible(false);
                     popup.getMenu().findItem(R.id.deactive_userText).setVisible(true);
                     popup.getMenu().findItem(R.id.reset_pwdText).setVisible(true);
@@ -427,7 +433,7 @@ public class UsersListAdapter extends RecyclerView.Adapter {
         EditText firstnameEdt, lastnameEdt, emailEdt, phonenoEdt;
         Spinner spinnerEdt;
         TextView firstnameText, spinnerText, emailText, phonenoText;
-        ImageView  okImageView, closeImageView, dotImageView, editImageView;
+        ImageView okImageView, closeImageView, dotImageView, editImageView;
 
 
         public TextViewHolder(@NonNull View itemView) {
@@ -574,8 +580,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     }
 
 
-
-
     /**
      * Container Activity must implement this interface
      * you can define any parameter as per your requirement
@@ -592,4 +596,6 @@ public class UsersListAdapter extends RecyclerView.Adapter {
     public void setOnCartChangedListener(OnCartChangedListener onCartChangedListener) {
         this.onCartChangedListener = onCartChangedListener;
     }
+
+
 }
