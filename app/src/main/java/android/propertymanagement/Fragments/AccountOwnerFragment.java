@@ -458,7 +458,8 @@ public class AccountOwnerFragment extends Fragment implements OnBackPressed, Vie
                         spinnerStateStr = mResponse.getAccountOwnerList().getStateCode();
 
                         //spinnerState.setSelection(mResponse.getAccountOwnerList().getStateId());
-                        Glide.with(mContext).load(mResponse.getAccountOwnerList().getAccountLogo())
+                        String image = mResponse.getAccountOwnerList().getAccountLogo();
+                        Glide.with(mContext).load(image)
                                 .fitCenter()
                                 .error(R.drawable.icon_upload)
                                 .into(uploadImageView);

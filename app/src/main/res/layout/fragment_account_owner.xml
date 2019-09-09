@@ -313,6 +313,7 @@
                 android:src="@drawable/icon_upload"
                 android:id="@+id/uploadImageView"/>
 
+
             <TextView
                 android:id="@+id/companyText"
                 android:layout_width="wrap_content"
@@ -322,6 +323,18 @@
                 android:textColor="@color/light_grey"
                 android:textStyle="bold" />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end">
+
+                <ImageView
+                    android:id="@+id/deleteIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon_deleteclosedot" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -348,7 +361,7 @@
                 android:gravity="end">
 
                 <ImageView
-                    android:id="@+id/deleteIcon"
+                    android:id="@+id/deleteIcon1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/icon_deleteclosedot" />
