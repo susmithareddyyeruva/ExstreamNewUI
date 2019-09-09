@@ -321,7 +321,8 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/icon_upload" />
+                        android:src="@drawable/icon_upload"
+                        android:id="@+id/uploadImageView"/>
 
                     <TextView
                         android:id="@+id/companyText"
