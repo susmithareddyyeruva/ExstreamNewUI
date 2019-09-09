@@ -8,6 +8,7 @@ import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllPermissi
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllStatesAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetCreateUserAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetDeleteUserAPIResponse;
+import android.propertymanagement.ModelClass.ResponseModelClasses.GetPropertyInsertAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetPropertySetupResponce;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateAccountOwnerAPIResponse;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetUpdateUserAPIResponse;
@@ -118,6 +119,9 @@ public interface ExStreamApiService {
     Observable<ArrayList<GetPropertySetupResponce>> GetAllProperty(@Url String url, @Header("Authorization") String Authorization);
 
 
+    // GetPropertyInsert
+    @POST(APIConstantURL.GetPropertyInsert)
+    Observable<GetPropertyInsertAPIResponse> GetPropertyInsert(@Body JsonObject data, @Header("Authorization") String Authorization);
 
 
 }

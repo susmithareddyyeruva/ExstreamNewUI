@@ -49,4 +49,7 @@ public interface APIConstantURL {
     //GetResetPasswordByAdmin
     String GetResetPasswordByAdmin = BASE_URL + "api/User/ResetPasswordByAdmin";
 
+    //GetPropertyInsert
+    String GetPropertyInsert = BASE_URL + "api/Property/Insert";
+
 }
