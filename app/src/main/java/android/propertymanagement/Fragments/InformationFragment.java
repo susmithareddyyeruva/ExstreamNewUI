@@ -196,6 +196,7 @@ public class InformationFragment extends Fragment implements View.OnClickListene
     }
 
 
+
     private void getPropertyInsert() {
         JsonObject object = addPropertyInsertRequest();
         ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
