@@ -1,12 +1,8 @@
 package android.propertymanagement.Activities;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.propertymanagement.Adapter.UsersListAdapter;
-import android.propertymanagement.Fragments.UsersFragment;
-import android.propertymanagement.ModelClass.ResponseModelClasses.GetAllAccountUsersAPIResponse;
+import android.propertymanagement.Adapter.ExpandablePropertyAdapter;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetPropertySetupResponce;
 import android.propertymanagement.R;
 import android.propertymanagement.Services.APIConstantURL;
@@ -14,11 +10,8 @@ import android.propertymanagement.Services.ExStreamApiService;
 import android.propertymanagement.Services.ServiceFactory;
 import android.propertymanagement.Utils.Constants;
 import android.propertymanagement.Utils.SharedPrefsData;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.util.Log;
@@ -36,7 +29,6 @@ import android.view.Menu;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,8 +38,6 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import static android.propertymanagement.Utils.Constants.PREF_NAME;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,15 +36,17 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class InformationFragment extends Fragment {
+public class InformationFragment extends Fragment implements View.OnClickListener {
 
     private Context mContext;
     View rootView;
-    private EditText propertyNameEdt, portfolioNameEdt, portfolioCodeEdt, ownerShipEdt, propertyMngCoEdt,
-            street_addressEdt, suite_unitEdt, zip_Edt, cityEdt, phonenoEdt, faxNoEdt, taxIdEdt, number_of_unitEdt, yearBuiltEdt;
+    private EditText propertyNameEdt, portfolioNameEdt, portfolioCodeEdt,
+            ownerShipEdt, propertyMngCoEdt, street_addressEdt, suite_unitEdt,
+            zip_Edt, cityEdt, phonenoEdt, faxNoEdt, taxIdEdt, number_of_unitEdt, yearBuiltEdt;
     private Spinner spinnerState;
     private Subscription mSubscription;
     private int propertyId;
+    private ImageView okImageView;
     private String authorizationToken;
     ArrayList<GetAllStatesAPIResponse> mStatesModel;
     ArrayAdapter<String> adapter_state;
@@ -80,10 +83,63 @@ public class InformationFragment extends Fragment {
         number_of_unitEdt = rootView.findViewById(R.id.number_of_unitEdt);
         yearBuiltEdt = rootView.findViewById(R.id.yearBuiltEdt);
         spinnerState = rootView.findViewById(R.id.spinnerState);
+        okImageView = rootView.findViewById(R.id.okImageView);
+        okImageView.setOnClickListener(this);
 
 
-        getPropertyInsert();
         getAllStates();
+
+    }
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.okImageView:
+
+                /*
+                 *  insert property
+                 */
+                getPropertyInsert();
+
+                break;
+
+        }
+
+    }
+    private void getPropertyInsert() {
+        JsonObject object = addPropertyInsertRequest();
+        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
+        mSubscription = service.GetPropertyInsert(object, "bearer" + " " + authorizationToken)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetPropertyInsertAPIResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetPropertyInsertAPIResponse mResponse) {
+                        propertyId = mResponse.getPropertyId();
+                        Toast.makeText(mContext, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                });
     }
 
     private void getAllStates() {
@@ -129,48 +185,12 @@ public class InformationFragment extends Fragment {
                                 getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId() != null &&
                                 !getAccountOwnerDetailsAPIResponse.getAccountOwnerList().getStateId().equals(""))
 */
-                        for (int j = 0; j < mStatesModel.size(); j++) {
+                     /*   for (int j = 0; j < mStatesModel.size(); j++) {
                             if (mStatesModel.get(j).getStateId().equals(""))
                                 spinnerState.setSelection(j + 1);
 
-                        }
+                        }*/
                     }
-                });
-    }
-
-
-    private void getPropertyInsert() {
-        JsonObject object = addPropertyInsertRequest();
-        ExStreamApiService service = ServiceFactory.createRetrofitService(mContext, ExStreamApiService.class);
-        mSubscription = service.GetPropertyInsert(object, "bearer" + " " + authorizationToken)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<GetPropertyInsertAPIResponse>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onNext(GetPropertyInsertAPIResponse mResponse) {
-                        propertyId = mResponse.getPropertyId();
-                        Toast.makeText(mContext, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-
                 });
     }
 
@@ -192,8 +212,7 @@ public class InformationFragment extends Fragment {
         model.setSuitUnit(suite_unitEdt.getText().toString());
         model.setZipCode(zip_Edt.getText().toString());
         model.setCity(cityEdt.getText().toString());
-       // model.setStateId(mStatesModel.get(spinnerState.getSelectedItemPosition() - 1).getStateId());
-        model.setStateId(0);
+        model.setStateId(mStatesModel.get(spinnerState.getSelectedItemPosition() - 1).getStateId());
         model.setPhoneNumber(phonenoEdt.getText().toString());
         model.setFax(faxNoEdt.getText().toString());
         model.setTaxId(taxIdEdt.getText().toString());
@@ -204,5 +223,6 @@ public class InformationFragment extends Fragment {
         return new Gson().toJsonTree(model).getAsJsonObject();
 
     }
+
 
 }

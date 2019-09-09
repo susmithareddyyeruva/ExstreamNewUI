@@ -347,6 +347,7 @@
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
+                            android:id="@+id/okImageView"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="@dimen/dimen15"

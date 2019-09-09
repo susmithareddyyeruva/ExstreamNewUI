@@ -1,7 +1,6 @@
-package android.propertymanagement.Activities;
+package android.propertymanagement.Adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.propertymanagement.ModelClass.ResponseModelClasses.GetPropertySetupResponce;
 import android.propertymanagement.R;
 import android.util.Log;
