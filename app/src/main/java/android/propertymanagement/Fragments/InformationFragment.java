@@ -282,6 +282,7 @@ public class InformationFragment extends Fragment implements View.OnClickListene
                 });
     }
 
+
     /**
      * Json Object of addPropertyInsertRequest
      *
